@@ -1,30 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="AIBehaviorTree/AIManager.cs">
     <Files>
-      <File FileName="AIBehaviorTree/AIManager.cs" Line="9" Column="1" />
+      <File FileName="AIBehaviorTree/AIManager.cs" Line="23" Column="10" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State expanded="True">
-          <Node name="AIBehaviorTree" expanded="True">
-            <Node name="References" expanded="True" />
-            <Node name="AIManager.cs" selected="True" />
-          </Node>
-        </State>
-      </Pad>
-      <Pad Id="ClassPad">
-        <State expanded="True" selected="True" />
-      </Pad>
-      <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State>
-          <Value>bytes[0]</Value>
-          <Value>bytes[1]</Value>
-          <Value>m</Value>
-          <Value>n</Value>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
