@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -14,5 +15,11 @@ namespace Game.AIBehaviorTree
     /// </summary>
     public class BNodeDecoratorNothing : BNodeDecorator
     {
+
+		public override void DrawGUI(int x , int y)
+		{
+			GUI.Label(new Rect(x,y,100,30) ,"test BNodeDecoratorNothing");
+		}
     }
 }
+

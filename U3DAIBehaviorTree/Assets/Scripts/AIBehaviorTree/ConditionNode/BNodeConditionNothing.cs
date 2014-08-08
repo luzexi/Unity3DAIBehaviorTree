@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using UnityEngine;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -16,6 +18,8 @@ namespace Game.AIBehaviorTree
     /// </summary>
     public class BNodeConditionNothing : BNodeCondition
     {
+		public int m_iTest;
+
         /// <summary>
         /// 执行
         /// </summary>
@@ -25,5 +29,27 @@ namespace Game.AIBehaviorTree
         {
             return true;
         }
+
+		/// <summary>
+		/// Draw the GUI.
+		/// </summary>
+		/// <param name="x">The x coordinate.</param>
+		/// <param name="y">The y coordinate.</param>
+		public override void DrawGUI(int x , int y)
+		{
+			try
+			{
+				GUI.Label(new Rect(x,y,100,30) ,"test condition");
+				y+=30;
+				string tmpint = "" + this.m_iTest;
+				tmpint = GUI.TextField(new Rect(x,y,100,30) , tmpint);
+				this.m_iTest = int.Parse(tmpint);
+			}
+			catch( Exception ex )
+			{
+				Debug.Log(ex.StackTrace);
+			}
+
+		}
     }
 }

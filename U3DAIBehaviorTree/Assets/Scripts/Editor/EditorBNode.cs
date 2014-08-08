@@ -19,9 +19,10 @@ public class EditorBNode
 	static int MAX_ID;	//MAX ID
 	public int m_iID;	//ID
 
+	public BNode m_cNode;	//node
 	public string m_strName;	//name
-	public NODE_TYPE m_eNodeType;    //节点类型
-	public int m_iTypeID;    //类型ID
+//	public NODE_TYPE m_eNodeType;    //节点类型
+//	public int m_iTypeID;    //类型ID
 	public EditorBNode m_cParent;  //父节点
 	public List<EditorBNode> m_lstChildren = new List<EditorBNode>();   //子节点
 
@@ -33,6 +34,8 @@ public class EditorBNode
 	{
 		this.m_strName = name;
 		m_iID = MAX_ID++;
+
+		this.m_cNode = new BNodeActionNothing();
 	}
 
 	public void RemoveChild( EditorBNode node )
@@ -54,14 +57,14 @@ public class EditorBNode
 		this.m_cRect = GUI.Window(this.m_iID,this.m_cRect , onWindows ,this.m_strName);
 		if(this.m_cParent != null )
 		{
-			Vector3 posStart = new Vector3(this.m_cRect.x + this.m_cRect.width/2f  , this.m_cRect.y ,0);
-			Vector3 posEnd = new Vector3(this.m_cParent.m_cRect.x + this.m_cParent.m_cRect.width/2f , this.m_cParent.m_cRect.y + this.m_cRect.height , 0);
+			Vector3 posStart = new Vector3(this.m_cParent.m_cRect.x + this.m_cParent.m_cRect.width , this.m_cParent.m_cRect.y + this.m_cRect.height/2f , 0);
+			Vector3 posEnd = new Vector3(this.m_cRect.x , this.m_cRect.y + this.m_cRect.height/2f ,0);
 
 			Handles.color = Color.red;
 			//Handles.ConeCap(0 , (posStart + posEnd)/2f , Quaternion.LookRotation((posStart-posEnd)) , 15);
-			Vector3 pos1 = (posStart + posEnd)/2f + (posStart-posEnd).normalized * 8.7f;
-			Vector3 pos2 = (posStart + posEnd)/2f + Vector3.Cross((posStart-posEnd),Vector3.forward).normalized * 5;
-			Vector3 pos3 = (posStart + posEnd)/2f + Vector3.Cross((posStart-posEnd),Vector3.forward).normalized * -5;
+			Vector3 pos1 = (posStart + posEnd)/2f + (posEnd-posStart).normalized * 8.7f;
+			Vector3 pos2 = (posStart + posEnd)/2f + Vector3.Cross((posEnd-posStart),Vector3.forward).normalized * 5;
+			Vector3 pos3 = (posStart + posEnd)/2f + Vector3.Cross((posEnd-posStart),Vector3.forward).normalized * -5;
 			Handles.DrawAAPolyLine(4,new Vector3[]{pos1,pos2,pos3,pos1});
 			Handles.color = Color.red;
 			Handles.DrawAAPolyLine(4 , new Vector3[]{posStart , posEnd});

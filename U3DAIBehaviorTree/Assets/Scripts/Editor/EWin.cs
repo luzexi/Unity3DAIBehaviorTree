@@ -40,7 +40,7 @@ public class EWin : EditorWindow
 		
 		if(SelectStart != null )
 		{
-			Vector3 sPos = new Vector3(SelectStart.m_cRect.x + SelectStart.m_cRect.width/2f , SelectStart.m_cRect.y + SelectStart.m_cRect.height , 0);
+			Vector3 sPos = new Vector3(SelectStart.m_cRect.x + SelectStart.m_cRect.width , SelectStart.m_cRect.y + SelectStart.m_cRect.height/2f , 0);
 			Vector3 ePos = new Vector3(Event.current.mousePosition.x , Event.current.mousePosition.y,0);
 			Handles.color = Color.blue;
 			Handles.DrawAAPolyLine(4,new Vector3[]{sPos , ePos});
@@ -51,8 +51,8 @@ public class EWin : EditorWindow
 
 		//////////////////// draw editor gui /////////////////////
 		GUI.BeginGroup(new Rect(0,0,200,500));
-		float x = 0;
-		float y = 0;
+		int x = 0;
+		int y = 0;
 		List<EditorBTree> lst = EditorBTreeMgr.sInstance.GetTrees();
 		if(GUI.Button(new Rect(x,y,200,40),"Finish"))
 		{
@@ -70,6 +70,7 @@ public class EWin : EditorWindow
 		{
 			if(this.m_strInputName != "")
 			{
+				cur_node = null;
 				EditorBTree tree = new EditorBTree();
 				tree.m_strDesc = this.m_strInputName + "_" + tree.m_iID;
 				EditorBTreeMgr.sInstance.Add(tree);
@@ -90,6 +91,7 @@ public class EWin : EditorWindow
 		y+=40;
 		if(GUI.Button(new Rect(x,y,200,40), "remove tree"))
 		{
+			cur_node = null;
 			EditorBTreeMgr.sInstance.Remove(cur_tree);
 			lst = EditorBTreeMgr.sInstance.GetTrees();
 			cur_tree = null;
@@ -109,6 +111,7 @@ public class EWin : EditorWindow
 		{
 			last_tree_index = cur_tree_index;
 			cur_tree = lst[cur_tree_index];
+			cur_node = null;
 		}
 		y+=45;
 		if(GUI.Button(new Rect(x,y,200,40),"create node"))
@@ -126,6 +129,10 @@ public class EWin : EditorWindow
 		}
 		y+=40;
 
+		if(cur_node != null )
+		{
+			cur_node.m_cNode.DrawGUI(x,y);
+		}
 		//
 		GUI.EndGroup();
 		//////////////////// draw editor gui /////////////////////

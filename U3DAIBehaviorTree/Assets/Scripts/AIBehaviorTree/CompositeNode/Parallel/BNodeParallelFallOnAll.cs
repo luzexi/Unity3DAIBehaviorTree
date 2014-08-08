@@ -14,5 +14,22 @@ namespace Game.AIBehaviorTree
     /// </summary>
     public class BNodeParallelFallOnAll : BNodeParallel
     {
+		/// <summary>
+		/// 执行
+		/// </summary>
+		/// <param name="input"></param>
+		/// <returns></returns>
+		public override bool Excute(BInput input)
+		{
+			bool result = true;
+			for (int i = 0 ; i < this.m_lstChildren.Count ; i++)
+			{
+				if( this.m_lstChildren[i].Excute(input) )
+				{
+					result = false;
+				}
+			}
+			return result;
+		}
     }
 }

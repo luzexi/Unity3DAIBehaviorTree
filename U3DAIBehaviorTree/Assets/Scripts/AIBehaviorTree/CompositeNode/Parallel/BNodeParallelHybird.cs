@@ -16,5 +16,33 @@ namespace Game.AIBehaviorTree
     {
         private bool m_bValue;    //比较值
         private int m_iNum; //数量
+
+		/// <summary>
+		/// 执行
+		/// </summary>
+		/// <param name="input"></param>
+		/// <returns></returns>
+		public override bool Excute(BInput input)
+		{
+			int trueNum = 0;
+			for (int i = 0 ; i < this.m_lstChildren.Count ; i++)
+			{
+				if( this.m_lstChildren[i].Excute(input) )
+				{
+					trueNum++;
+				}
+			}
+			if(m_bValue)
+			{
+				if( trueNum >= this.m_iNum )
+					return true;
+			}
+			else
+			{
+				if( (this.m_lstChildren.Count - trueNum) >= this.m_iNum )
+					return true;
+			}
+			return false;
+		}
     }
 }

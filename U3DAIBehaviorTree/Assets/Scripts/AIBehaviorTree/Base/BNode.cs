@@ -26,10 +26,15 @@ namespace Game.AIBehaviorTree
     /// </summary>
     public abstract class BNode
     {
-        protected NODE_TYPE m_eNodeType;    //节点类型
-        protected int m_iTypeID;    //类型ID
+//        protected NODE_TYPE m_eNodeType;    //节点类型
+//        protected int m_iTypeID;    //类型ID
         protected BNode m_cParent;  //父节点
         protected List<BNode> m_lstChildren = new List<BNode>();   //子节点
+
+		public virtual void DrawGUI(int x , int y)
+		{
+			//
+		}
 
         /// <summary>
         /// 设置父节点
@@ -120,13 +125,13 @@ namespace Game.AIBehaviorTree
         /// </summary>
         public virtual void Read( List<string> lst ,ref int index)
         {
-            this.m_eNodeType = (NODE_TYPE)(int.Parse(lst[index++]));
-            this.m_iTypeID = int.Parse(lst[index++]);
-            int count = int.Parse(lst[index++]);
-            for (int i = 0; i < count; i++)
-            {
-                //
-            }
+//            this.m_eNodeType = (NODE_TYPE)(int.Parse(lst[index++]));
+//            this.m_iTypeID = int.Parse(lst[index++]);
+//            int count = int.Parse(lst[index++]);
+//            for (int i = 0; i < count; i++)
+//            {
+//                //
+//            }
         }
 
         /// <summary>
