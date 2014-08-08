@@ -31,6 +31,11 @@ namespace Game.AIBehaviorTree
         protected BNode m_cParent;  //父节点
         protected List<BNode> m_lstChildren = new List<BNode>();   //子节点
 
+		public virtual string GetName()
+		{
+			return "";
+		}
+
 		public virtual void DrawGUI(int x , int y)
 		{
 			//

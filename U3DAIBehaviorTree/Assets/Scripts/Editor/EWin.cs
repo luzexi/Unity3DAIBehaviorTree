@@ -9,6 +9,7 @@ public class EWin : EditorWindow
 	public static EditorBNode cur_node;	//current node
 	private static int cur_tree_index = -1;
 	private static int last_tree_index = -1;
+	private static int select_create_node_id = -1;
 
 	public static EditorBNode SelectStart;
 
@@ -54,16 +55,23 @@ public class EWin : EditorWindow
 		int x = 0;
 		int y = 0;
 		List<EditorBTree> lst = EditorBTreeMgr.sInstance.GetTrees();
-		if(GUI.Button(new Rect(x,y,200,40),"Finish"))
+		if(GUI.Button(new Rect(x,y,200,40),"Load"))
 		{
 			//
 		}
 		y+=40;
-		if(GUI.Button(new Rect(x,y,200,40),"Editor"))
+		if(GUI.Button(new Rect(x,y,200,40),"Save Editor BTree"))
 		{
 			//
 		}
-		y+=45;
+		y+=40;
+		if(GUI.Button(new Rect(x,y,200,40),"Save BTree"))
+		{
+			//
+		}
+		y+=40;
+		GUI.Label(new Rect(x,y,200,20) , "=======================");
+		y+=20;
 
 		this.m_strInputName = GUI.TextField(new Rect(x,y+10,100,20), this.m_strInputName);
 		if( GUI.Button(new Rect(x+100,y,100,40) , "create tree"))
@@ -99,7 +107,9 @@ public class EWin : EditorWindow
 			last_tree_index = -1;
 			Repaint();
 		}
-		y+=45;
+		y+=40;
+		GUI.Label(new Rect(x,y,200,20) , "=======================");
+		y+=20;
 
 		string[] treeNames = new string[lst.Count];
 		for(int i = 0 ; i<lst.Count ; i++ )
@@ -113,12 +123,19 @@ public class EWin : EditorWindow
 			cur_tree = lst[cur_tree_index];
 			cur_node = null;
 		}
-		y+=45;
-		if(GUI.Button(new Rect(x,y,200,40),"create node"))
+		y+=40;
+		GUI.Label(new Rect(x,y,200,20) , "=======================");
+		y+=20;
+
+		select_create_node_id = EditorGUI.Popup(new Rect(x,y,100,40),select_create_node_id,EditorBTreeMgr.sInstance.GetNodeLst());
+		if(GUI.Button(new Rect(x+100,y,100,40),"create node"))
 		{
-			EditorBNode node = new EditorBNode("node");
-			if(cur_tree != null )
-				cur_tree.Add(node);
+			if(select_create_node_id >= 0 )
+			{
+				EditorBNode node = EditorBTreeMgr.sInstance.GeneratorNode(select_create_node_id);
+				if(cur_tree != null )
+					cur_tree.Add(node);
+			}
 		}
 		y+=40;
 		if(GUI.Button(new Rect(x,y,200,40),"clear"))
@@ -128,9 +145,15 @@ public class EWin : EditorWindow
 			SelectStart = null;
 		}
 		y+=40;
-
+		GUI.Label(new Rect(x,y,200,20) , "=======================");
+		y+=20;
 		if(cur_node != null )
 		{
+			GUI.Label(new Rect(x,y,80,20),"Node Name:");
+			cur_node.m_strName = GUI.TextField(new Rect(x+80,y,120,20) , cur_node.m_strName);
+			y+=20;
+			GUI.Label(new Rect(x,y,200,15) , "=======================");
+			y+=15;
 			cur_node.m_cNode.DrawGUI(x,y);
 		}
 		//

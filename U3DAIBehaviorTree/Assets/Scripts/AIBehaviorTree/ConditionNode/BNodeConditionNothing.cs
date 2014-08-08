@@ -20,6 +20,10 @@ namespace Game.AIBehaviorTree
     {
 		public int m_iTest;
 
+		public override string GetName ()
+		{
+			return "con";
+		}
         /// <summary>
         /// 执行
         /// </summary>

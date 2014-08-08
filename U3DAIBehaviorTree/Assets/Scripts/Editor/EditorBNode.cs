@@ -21,8 +21,6 @@ public class EditorBNode
 
 	public BNode m_cNode;	//node
 	public string m_strName;	//name
-//	public NODE_TYPE m_eNodeType;    //节点类型
-//	public int m_iTypeID;    //类型ID
 	public EditorBNode m_cParent;  //父节点
 	public List<EditorBNode> m_lstChildren = new List<EditorBNode>();   //子节点
 
@@ -30,12 +28,9 @@ public class EditorBNode
 	public Rect m_cRect = new Rect(500,100,100,150);	//pos
 	public bool m_bLink = false;	//link
 
-	public EditorBNode(string name)
+	public EditorBNode()
 	{
-		this.m_strName = name;
 		m_iID = MAX_ID++;
-
-		this.m_cNode = new BNodeActionNothing();
 	}
 
 	public void RemoveChild( EditorBNode node )
