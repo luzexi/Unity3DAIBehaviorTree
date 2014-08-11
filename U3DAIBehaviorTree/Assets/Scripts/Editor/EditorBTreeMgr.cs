@@ -1,6 +1,8 @@
 using UnityEngine;
+using UnityEditor;
 using Game.AIBehaviorTree;
 using System;
+using System.IO;
 using System.Runtime;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,7 +20,6 @@ using System.Collections.Generic;
 public class EditorBTreeMgr
 {
 	public Dictionary<int,EditorBTree> m_mapTree = new Dictionary<int, EditorBTree>();
-	private Dictionary<int,Type> m_mapGen = new Dictionary<int, Type>();
 
 	private static EditorBTreeMgr s_cInstance;
 	public static EditorBTreeMgr sInstance
@@ -36,35 +37,40 @@ public class EditorBTreeMgr
 	public EditorBTreeMgr()
 	{
 		//
-		m_mapGen.Add(0,typeof(BNodeActionNothing));
-		m_mapGen.Add(1,typeof(BNodeConditionNothing));
-		m_mapGen.Add(2,typeof(BNodeDecoratorNothing));
 	}
 
-	public string[] GetNodeLst()
+	public void Save()
 	{
-		string[] str = new string[this.m_mapGen.Count];
-		foreach( KeyValuePair<int,Type> item in this.m_mapGen )
+		string filepath = EditorUtility.SaveFilePanel("Bahvior Tree" , Application.dataPath , "","btree");
+		Debug.Log(filepath);
+		BinaryWriter bw = new BinaryWriter(File.Create(filepath));
+		bw.Write(this.m_mapTree.Count);
+		foreach( KeyValuePair<int , EditorBTree> item in this.m_mapTree )
 		{
-			str[item.Key] = item.Value.Name;
+			item.Value.Write(bw);
 		}
-		return str;
+	}
+
+	public void Load()
+	{
+		string filepath = EditorUtility.OpenFilePanel("Bahvior Tree" , Application.dataPath ,"btree");
+		this.m_mapTree.Clear();
+		BinaryReader br = new BinaryReader(File.Open(filepath,FileMode.Open));
+		int count = br.ReadInt32();
+		for(int i = 0 ; i<count ; i++)
+		{
+			EditorBTree bt = new EditorBTree();
+			bt.Read(br);
+			this.m_mapTree.Add(bt.m_iID , bt);
+		}
 	}
 
 	public EditorBNode GeneratorNode(int typeid)
 	{
 		EditorBNode node = null;
-		Type t = this.m_mapGen[typeid];
 		node = new EditorBNode();
-		node.m_cNode = Activator.CreateInstance(t) as BNode;
-		node.m_strName = t.Name;
-//		switch(typeid)
-//		{
-//		case 0:
-//			node = new EditorBNode("ActionNothing");
-//			node.m_cNode = new Game.AIBehaviorTree.BNodeActionNothing();
-//			break;
-//		}
+		node.m_cNode = BNodeFactory.sInstance.Create(typeid);
+		node.m_strName = node.m_cNode.GetName()+"_node";
 		return node;
 	}
 

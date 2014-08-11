@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\AIBehaviorTree\AIManager.cs" />
      <Compile Include="Assets\Scripts\AIBehaviorTree\ActionNode\BNodeActionNothing.cs" />
+     <Compile Include="Assets\Scripts\AIBehaviorTree\BNodeFactory.cs" />
      <Compile Include="Assets\Scripts\AIBehaviorTree\Base\BNode.cs" />
      <Compile Include="Assets\Scripts\AIBehaviorTree\Base\BNodeAction.cs" />
      <Compile Include="Assets\Scripts\AIBehaviorTree\Base\BNodeComposite.cs" />

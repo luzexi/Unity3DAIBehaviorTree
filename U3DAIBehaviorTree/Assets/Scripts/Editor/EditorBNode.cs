@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEditor;
+using System;
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using Game.AIBehaviorTree;
@@ -19,10 +21,12 @@ public class EditorBNode
 	static int MAX_ID;	//MAX ID
 	public int m_iID;	//ID
 
-	public BNode m_cNode;	//node
+	public BNode m_cNode;	//node 
 	public string m_strName;	//name
+	public int m_iParentID;	//parent id
 	public EditorBNode m_cParent;  //父节点
 	public List<EditorBNode> m_lstChildren = new List<EditorBNode>();   //子节点
+	public List<int> m_lstChildrenID = new List<int>();	//children id
 
 	//
 	public Rect m_cRect = new Rect(500,100,100,150);	//pos
@@ -33,13 +37,56 @@ public class EditorBNode
 		m_iID = MAX_ID++;
 	}
 
+	public void Write( BinaryWriter bw )
+	{
+		bw.Write(this.m_iID);
+		bw.Write(this.m_strName);
+		bw.Write(this.m_cRect.x);
+		bw.Write(this.m_cRect.y);
+		bw.Write(this.m_cRect.width);
+		bw.Write(this.m_cRect.height);
+		bw.Write(this.m_iParentID);
+		bw.Write(this.m_lstChildren.Count);
+		foreach( int item in this.m_lstChildrenID )
+		{
+			bw.Write(item);
+		}
+		if(this.m_cNode != null )
+		{
+			bw.Write(this.m_cNode.GetTypeID());
+			this.m_cNode.Write(bw);
+		}
+	}
+
+	public void Read( BinaryReader br )
+	{
+		this.m_iID = br.ReadInt32();
+		this.m_strName = br.ReadString();
+		this.m_cRect = new Rect();
+		this.m_cRect.x = br.ReadSingle();
+		this.m_cRect.y = br.ReadSingle();
+		this.m_cRect.width = br.ReadSingle();
+		this.m_cRect.height = br.ReadSingle();
+		this.m_iParentID = br.ReadInt32();
+		int count = br.ReadInt32();
+		for( int i = 0 ; i<count ; i++ )
+		{
+			int child_id = br.ReadInt32();
+			this.m_lstChildrenID.Add(child_id);
+		}
+		int typeid = br.ReadInt32();
+		this.m_cNode = BNodeFactory.sInstance.Create(typeid);
+	}
+
 	public void RemoveChild( EditorBNode node )
 	{
 		this.m_lstChildren.Remove(node);
+		this.m_lstChildrenID.Remove(node.m_iID);
 	}
 	public void AddChild( EditorBNode node )
 	{
 		this.m_lstChildren.Add(node);
+		this.m_lstChildrenID.Add(node.m_iID);
 	}
 	public bool ContainChild(EditorBNode node)
 	{
@@ -90,6 +137,7 @@ public class EditorBNode
 					this.m_cParent.RemoveChild(this);
 				}
 				this.m_cParent = EWin.SelectStart;
+				this.m_iParentID = EWin.SelectStart.m_iID;
 				EWin.SelectStart.RemoveChild(this);
 				EWin.SelectStart.AddChild(this);
 				EWin.SelectStart = null;
@@ -113,6 +161,7 @@ public class EditorBNode
 			foreach( EditorBNode item in this.m_lstChildren )
 			{
 				item.m_cParent = null;
+				item.m_iParentID = -1;
 			}
 			this.m_lstChildren.Clear();
 		}

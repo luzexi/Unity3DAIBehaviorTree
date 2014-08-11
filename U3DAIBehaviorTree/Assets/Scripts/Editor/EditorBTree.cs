@@ -1,4 +1,6 @@
 using UnityEngine;
+using System;
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -24,6 +26,42 @@ public class EditorBTree
 	public EditorBTree()
 	{
 		this.m_iID = TREE_ID++;
+	}
+
+	public void Write( BinaryWriter bw )
+	{
+		bw.Write(this.m_iID);
+		bw.Write(this.m_strDesc);
+		bw.Write(this.m_lstNode.Count);
+		foreach( EditorBNode item in this.m_lstNode )
+		{
+			item.Write(bw);
+		}
+	}
+
+	public void Read( BinaryReader br )
+	{
+		this.m_iID = br.ReadInt32();
+		this.m_strDesc = br.ReadString();
+		this.m_cRoot = null;
+		this.m_lstNode.Clear();
+		int count = br.ReadInt32();
+		for( int i = 0 ; i<count ; i++ )
+		{
+			EditorBNode node = new EditorBNode();
+			node.Read(br);
+			this.m_lstNode.Add(node);
+		}
+		foreach( EditorBNode item in this.m_lstNode )
+		{
+			EditorBNode node = GetNode(item.m_iParentID);
+			item.m_cParent = node;
+			foreach( int child_id in item.m_lstChildrenID )
+			{
+				node = GetNode(child_id);
+				item.m_lstChildren.Add(node);
+			}
+		}
 	}
 
 	public EditorBNode GetNode( int id )

@@ -57,17 +57,27 @@ public class EWin : EditorWindow
 		List<EditorBTree> lst = EditorBTreeMgr.sInstance.GetTrees();
 		if(GUI.Button(new Rect(x,y,200,40),"Load"))
 		{
-			//
+			cur_tree = null;
+			cur_node = null;
+			cur_tree_index = -1;
+			last_tree_index = -1;
+			select_create_node_id = -1;
+			
+			SelectStart =null;
+
+			EditorBTreeMgr.sInstance.Load();
 		}
 		y+=40;
 		if(GUI.Button(new Rect(x,y,200,40),"Save Editor BTree"))
 		{
-			//
+			EditorBTreeMgr.sInstance.Save();
+			AssetDatabase.Refresh();
 		}
 		y+=40;
 		if(GUI.Button(new Rect(x,y,200,40),"Save BTree"))
 		{
 			//
+			AssetDatabase.Refresh();
 		}
 		y+=40;
 		GUI.Label(new Rect(x,y,200,20) , "=======================");
@@ -127,7 +137,7 @@ public class EWin : EditorWindow
 		GUI.Label(new Rect(x,y,200,20) , "=======================");
 		y+=20;
 
-		select_create_node_id = EditorGUI.Popup(new Rect(x,y,100,40),select_create_node_id,EditorBTreeMgr.sInstance.GetNodeLst());
+		select_create_node_id = EditorGUI.Popup(new Rect(x,y,100,40),select_create_node_id,BNodeFactory.sInstance.GetNodeLst());
 		if(GUI.Button(new Rect(x+100,y,100,40),"create node"))
 		{
 			if(select_create_node_id >= 0 )

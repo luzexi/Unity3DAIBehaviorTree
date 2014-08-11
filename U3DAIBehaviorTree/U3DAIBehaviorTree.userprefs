@@ -1,61 +1,20 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Editor/EditorBTreeMgr.cs">
     <Files>
-      <File FileName="Assets/Scripts/AIBehaviorTree/ActionNode/BNodeActionNothing.cs" Line="23" Column="15" />
-      <File FileName="Assets/Scripts/Editor/EWin.cs" Line="18" Column="37" />
-      <File FileName="Assets/Scripts/Editor/EditorBNode.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Editor/EditorBTreeMgr.cs" Line="56" Column="15" />
-      <File FileName="Assets/Scripts/AIBehaviorTree/Base/BNode.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Editor/EditorBNode.cs" Line="39" Column="2" />
+      <File FileName="Assets/Scripts/Editor/EditorBTree.cs" Line="35" Column="34" />
+      <File FileName="Assets/Scripts/AIBehaviorTree/Base/BNode.cs" Line="57" Column="26" />
+      <File FileName="Assets/Scripts/AIBehaviorTree/BNodeFactory.cs" Line="47" Column="16" />
+      <File FileName="Assets/Scripts/Editor/EditorBTreeMgr.cs" Line="49" Column="25" />
       <File FileName="Assets/Scripts/AIBehaviorTree/AIManager.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/AIBehaviorTree/Base/BTree.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Editor/EditorBTree.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/AIBehaviorTree/ActionNode/BNodeActionNothing.cs" Line="49" Column="1" />
-      <File FileName="Assets/Scripts/AIBehaviorTree/Base/BNodeComposite.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/AIBehaviorTree/Base/BNodeCondition.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/AIBehaviorTree/Base/BNodeDecorator.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/AIBehaviorTree/CompositeNode/BNodeParallel.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/AIBehaviorTree/CompositeNode/BNodeSelector.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/AIBehaviorTree/ConditionNode/BNodeConditionNothing.cs" Line="40" Column="4" />
-      <File FileName="Assets/Scripts/AIBehaviorTree/DecoratorNode/BNodeDecoratorNothing.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/AIBehaviorTree/CompositeNode/Parallel/BNodeParallelFallOnAll.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/AIBehaviorTree/CompositeNode/Parallel/BNodeParallelHybird.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/AIBehaviorTree/CompositeNode/Parallel/BNodeParallelSucceedOnAll.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/AIBehaviorTree/CompositeNode/BNodeSequence.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/AIBehaviorTree/Base/BNodeAction.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True">
-          <Node name="Assembly-CSharp" expanded="True">
-            <Node name="Scripts" expanded="True">
-              <Node name="AIBehaviorTree" expanded="True">
-                <Node name="ActionNode" expanded="True" />
-                <Node name="Base" expanded="True" />
-                <Node name="ConditionNode" expanded="True" />
-                <Node name="DecoratorNode" expanded="True" />
-              </Node>
-            </Node>
-          </Node>
-          <Node name="Assembly-CSharp-Editor" expanded="True">
-            <Node name="Scripts" expanded="True">
-              <Node name="Editor" expanded="True">
-                <Node name="EditorBTreeMgr.cs" selected="True" />
-              </Node>
-            </Node>
-          </Node>
-        </State>
+        <State expanded="True" />
       </Pad>
       <Pad Id="ClassPad">
         <State expanded="True" selected="True" />
-      </Pad>
-      <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State>
-          <Value>bytes[0]</Value>
-          <Value>bytes[1]</Value>
-          <Value>m</Value>
-          <Value>n</Value>
-        </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>

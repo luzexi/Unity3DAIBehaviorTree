@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using System;
+using System.IO;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -27,9 +29,18 @@ namespace Game.AIBehaviorTree
     public abstract class BNode
     {
 //        protected NODE_TYPE m_eNodeType;    //节点类型
-//        protected int m_iTypeID;    //类型ID
+        protected int m_iTypeID;    //类型ID
         protected BNode m_cParent;  //父节点
         protected List<BNode> m_lstChildren = new List<BNode>();   //子节点
+
+		public virtual void Read( BinaryReader br ) {}
+
+		public virtual void Write( BinaryWriter bw ) {}
+
+		public virtual void Read( List<string> lst ,ref int index) {}
+
+		public virtual void Write(List<string> lst) {}
+
 
 		public virtual string GetName()
 		{
@@ -39,6 +50,16 @@ namespace Game.AIBehaviorTree
 		public virtual void DrawGUI(int x , int y)
 		{
 			//
+		}
+
+		public int GetTypeID()
+		{
+			return this.m_iTypeID;
+		}
+
+		public void SetTypeID( int value )
+		{
+			this.m_iTypeID = value;
 		}
 
         /// <summary>
@@ -124,25 +145,5 @@ namespace Game.AIBehaviorTree
             }
             this.m_lstChildren.RemoveAt(index);
         }
-
-        /// <summary>
-        /// 读取数据
-        /// </summary>
-        public virtual void Read( List<string> lst ,ref int index)
-        {
-//            this.m_eNodeType = (NODE_TYPE)(int.Parse(lst[index++]));
-//            this.m_iTypeID = int.Parse(lst[index++]);
-//            int count = int.Parse(lst[index++]);
-//            for (int i = 0; i < count; i++)
-//            {
-//                //
-//            }
-        }
-
-        /// <summary>
-        /// 写入数据
-        /// </summary>
-        /// <param name="lst"></param>
-        public virtual void Write(List<string> lst) { }
     }
 }
