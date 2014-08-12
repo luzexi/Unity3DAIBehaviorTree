@@ -18,7 +18,7 @@ public class EWin : EditorWindow
 	private Vector2 m_cScrollPos = new Vector2(0,0);
 	private string m_strInputName = "";
 
-	[@MenuItem("ai/ewin")]
+	[@MenuItem("AI/BehaviorTree")]
 	static void init()
 	{
 		EWin ewin = (EWin)EditorWindow.GetWindow(typeof(EWin));

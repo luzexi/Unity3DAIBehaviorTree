@@ -42,7 +42,6 @@ public class BNodeFactory
 	{
 		if( m_mapGen.ContainsKey(typeid) )
 		{
-			Debug.Log("typeid "+typeid);
 			Type t = this.m_mapGen[typeid];
 			BNode node = Activator.CreateInstance(t) as BNode;
 			node.SetTypeID(typeid);
