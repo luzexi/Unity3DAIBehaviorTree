@@ -18,19 +18,18 @@ using Game.AIBehaviorTree;
 /// </summary>
 public class EditorBNode
 {
-	static int MAX_ID;	//MAX ID
+	public static int MAX_ID = 1;	//MAX ID
 	public int m_iID;	//ID
 
 	public BNode m_cNode;	//node 
 	public string m_strName;	//name
-	public int m_iParentID;	//parent id
 	public EditorBNode m_cParent;  //父节点
 	public List<EditorBNode> m_lstChildren = new List<EditorBNode>();   //子节点
-	public List<int> m_lstChildrenID = new List<int>();	//children id
 
 	//
-	public Rect m_cRect = new Rect(500,100,100,150);	//pos
+	public Rect m_cRect = new Rect(500,2000,100,150);	//pos
 	public bool m_bLink = false;	//link
+	public int m_iChildrenIndex = -1;	//child index
 
 	public EditorBNode()
 	{
@@ -45,12 +44,6 @@ public class EditorBNode
 		bw.Write(this.m_cRect.y);
 		bw.Write(this.m_cRect.width);
 		bw.Write(this.m_cRect.height);
-		bw.Write(this.m_iParentID);
-		bw.Write(this.m_lstChildren.Count);
-		foreach( int item in this.m_lstChildrenID )
-		{
-			bw.Write(item);
-		}
 		if(this.m_cNode != null )
 		{
 			bw.Write(this.m_cNode.GetTypeID());
@@ -67,26 +60,24 @@ public class EditorBNode
 		this.m_cRect.y = br.ReadSingle();
 		this.m_cRect.width = br.ReadSingle();
 		this.m_cRect.height = br.ReadSingle();
-		this.m_iParentID = br.ReadInt32();
-		int count = br.ReadInt32();
-		for( int i = 0 ; i<count ; i++ )
-		{
-			int child_id = br.ReadInt32();
-			this.m_lstChildrenID.Add(child_id);
-		}
 		int typeid = br.ReadInt32();
 		this.m_cNode = BNodeFactory.sInstance.Create(typeid);
+		this.m_cNode.Read(br);
+		if(this.m_iID >= MAX_ID)
+			MAX_ID = this.m_iID +1;
 	}
 
 	public void RemoveChild( EditorBNode node )
 	{
 		this.m_lstChildren.Remove(node);
-		this.m_lstChildrenID.Remove(node.m_iID);
+		this.m_cNode.RemoveChild(node.m_iID);
+		CalChildrenIndex(this);
 	}
 	public void AddChild( EditorBNode node )
 	{
 		this.m_lstChildren.Add(node);
-		this.m_lstChildrenID.Add(node.m_iID);
+		this.m_cNode.AddChild(node.m_iID);
+		CalChildrenIndex(this);
 	}
 	public bool ContainChild(EditorBNode node)
 	{
@@ -120,6 +111,7 @@ public class EditorBNode
 
 	private void onWindows(int id)
 	{
+		GUILayout.Label("Index: "+this.m_iChildrenIndex);
 		if( GUILayout.Button("link") )
 		{
 			if(EWin.SelectStart == null )
@@ -137,7 +129,7 @@ public class EditorBNode
 					this.m_cParent.RemoveChild(this);
 				}
 				this.m_cParent = EWin.SelectStart;
-				this.m_iParentID = EWin.SelectStart.m_iID;
+				this.m_cNode.SetParentID(EWin.SelectStart.m_iID);
 				EWin.SelectStart.RemoveChild(this);
 				EWin.SelectStart.AddChild(this);
 				EWin.SelectStart = null;
@@ -157,15 +149,29 @@ public class EditorBNode
 			if( this.m_cParent != null )
 			{
 				this.m_cParent.RemoveChild(this);
+				CalChildrenIndex(this.m_cParent);
 			}
 			foreach( EditorBNode item in this.m_lstChildren )
 			{
 				item.m_cParent = null;
-				item.m_iParentID = -1;
+				item.m_cNode.SetParentID(-1);
+				item.m_iChildrenIndex = -1;
 			}
 			this.m_lstChildren.Clear();
 		}
 		GUI.DragWindow();
+	}
+
+	/// <summary>
+	/// Calculate the index of the children.
+	/// </summary>
+	/// <param name="node">Node.</param>
+	public static void CalChildrenIndex( EditorBNode node )
+	{
+		for( int i = 0 ; i<node.m_lstChildren.Count ; i++ )
+		{
+			node.m_lstChildren[i].m_iChildrenIndex = i;
+		}
 	}
 }
 

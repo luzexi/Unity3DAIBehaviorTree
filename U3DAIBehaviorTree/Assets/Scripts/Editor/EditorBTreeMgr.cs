@@ -39,9 +39,21 @@ public class EditorBTreeMgr
 		//
 	}
 
+	public void SaveEx()
+	{
+		string filepath = EditorUtility.SaveFilePanel("Behavior Tree" , Application.dataPath , "","bytes");
+		BinaryWriter bw = new BinaryWriter(File.Create(filepath));
+		bw.Write(this.m_mapTree.Count);
+		foreach( KeyValuePair<int , EditorBTree> item in this.m_mapTree )
+		{
+			item.Value.WriteEx(bw);
+		}
+		bw.Close();
+	}
+
 	public void Save()
 	{
-		string filepath = EditorUtility.SaveFilePanel("Bahvior Tree" , Application.dataPath , "","btree");
+		string filepath = EditorUtility.SaveFilePanel("Behavior Tree" , Application.dataPath , "","btree");
 		Debug.Log(filepath);
 		BinaryWriter bw = new BinaryWriter(File.Create(filepath));
 		bw.Write(this.m_mapTree.Count);
@@ -49,11 +61,13 @@ public class EditorBTreeMgr
 		{
 			item.Value.Write(bw);
 		}
+		bw.Close();
 	}
 
 	public void Load()
 	{
 		string filepath = EditorUtility.OpenFilePanel("Bahvior Tree" , Application.dataPath ,"btree");
+		if(filepath == "") return;
 		this.m_mapTree.Clear();
 		BinaryReader br = new BinaryReader(File.Open(filepath,FileMode.Open));
 		int count = br.ReadInt32();
@@ -70,6 +84,7 @@ public class EditorBTreeMgr
 		EditorBNode node = null;
 		node = new EditorBNode();
 		node.m_cNode = BNodeFactory.sInstance.Create(typeid);
+		node.m_cNode.SetID(node.m_iID);
 		node.m_strName = node.m_cNode.GetName()+"_node";
 		return node;
 	}
@@ -109,4 +124,3 @@ public class EditorBTreeMgr
 		return;
 	}
 }
-

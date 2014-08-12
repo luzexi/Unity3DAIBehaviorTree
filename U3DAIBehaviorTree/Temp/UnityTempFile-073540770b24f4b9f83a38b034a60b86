@@ -59,5 +59,6 @@
 'Assets/Scripts/AIBehaviorTree/ConditionNode/BNodeConditionNothing.cs'
 'Assets/Scripts/AIBehaviorTree/DecoratorNode/BNodeDecoratorNothing.cs'
 'Assets/Scripts/AIBehaviorTree/Input/BInput.cs'
+'Assets/Scripts/Test/NewBehaviourScript.cs'
 -r:'/Applications/Unity/Unity.app/Contents/Frameworks/Mono/lib/mono/unity/System.Runtime.Serialization.dll'
 -r:'/Applications/Unity/Unity.app/Contents/Frameworks/Mono/lib/mono/unity/System.Xml.Linq.dll'

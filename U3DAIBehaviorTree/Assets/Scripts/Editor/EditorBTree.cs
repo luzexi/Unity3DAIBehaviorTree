@@ -28,6 +28,18 @@ public class EditorBTree
 		this.m_iID = TREE_ID++;
 	}
 
+	public void WriteEx( BinaryWriter bw )
+	{
+		bw.Write(this.m_iID);
+		bw.Write(this.m_strDesc);
+		bw.Write(this.m_lstNode.Count);
+		foreach( EditorBNode item in this.m_lstNode )
+		{
+			bw.Write(item.m_cNode.GetTypeID());
+			item.m_cNode.Write(bw);
+		}
+	}
+
 	public void Write( BinaryWriter bw )
 	{
 		bw.Write(this.m_iID);
@@ -54,14 +66,20 @@ public class EditorBTree
 		}
 		foreach( EditorBNode item in this.m_lstNode )
 		{
-			EditorBNode node = GetNode(item.m_iParentID);
+			EditorBNode node = GetNode(item.m_cNode.GetParentID());
 			item.m_cParent = node;
-			foreach( int child_id in item.m_lstChildrenID )
+			foreach( int child_id in item.m_cNode.GetChildrenIDList() )
 			{
 				node = GetNode(child_id);
 				item.m_lstChildren.Add(node);
 			}
 		}
+		foreach( EditorBNode item in this.m_lstNode )
+		{
+			EditorBNode.CalChildrenIndex(item);
+		}
+		if(this.m_iID >= TREE_ID )
+			TREE_ID = this.m_iID+1;
 	}
 
 	public EditorBNode GetNode( int id )

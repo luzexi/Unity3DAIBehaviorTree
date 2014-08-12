@@ -28,18 +28,38 @@ namespace Game.AIBehaviorTree
     /// </summary>
     public abstract class BNode
     {
-//        protected NODE_TYPE m_eNodeType;    //节点类型
+		protected int m_iID;	//ID
         protected int m_iTypeID;    //类型ID
         protected BNode m_cParent;  //父节点
+		protected int m_iParentID;	//parent id
         protected List<BNode> m_lstChildren = new List<BNode>();   //子节点
+		protected List<int> m_lstChildrenID = new List<int>();	//children id
 
-		public virtual void Read( BinaryReader br ) {}
+		public virtual void Read( BinaryReader br )
+		{
+			this.m_iID = br.ReadInt32();
+			this.m_iTypeID = br.ReadInt32();
+			this.m_iParentID = br.ReadInt32();
+			int count = br.ReadInt32();
+			this.m_lstChildrenID.Clear();
+			for( int i = 0 ; i<count ; i++)
+			{
+				int id = br.ReadInt32();
+				this.m_lstChildrenID.Add(id);
+			}
+		}
 
-		public virtual void Write( BinaryWriter bw ) {}
-
-		public virtual void Read( List<string> lst ,ref int index) {}
-
-		public virtual void Write(List<string> lst) {}
+		public virtual void Write( BinaryWriter bw )
+		{
+			bw.Write(this.m_iID);
+			bw.Write(this.m_iTypeID);
+			bw.Write(this.m_iParentID);
+			bw.Write(this.m_lstChildrenID.Count);
+			for( int i = 0 ; i<this.m_lstChildrenID.Count ; i++ )
+			{
+				bw.Write(this.m_lstChildrenID[i]);
+			}
+		}
 
 
 		public virtual string GetName()
@@ -50,6 +70,16 @@ namespace Game.AIBehaviorTree
 		public virtual void DrawGUI(int x , int y)
 		{
 			//
+		}
+
+		public int GetID()
+		{
+			return this.m_iID;
+		}
+
+		public void SetID( int id )
+		{
+			this.m_iID = id;
 		}
 
 		public int GetTypeID()
@@ -71,6 +101,11 @@ namespace Game.AIBehaviorTree
             this.m_cParent = node;
         }
 
+		public void SetParentID( int id )
+		{
+			this.m_iParentID = id;
+		}
+
         /// <summary>
         /// 获取父节点
         /// </summary>
@@ -80,6 +115,15 @@ namespace Game.AIBehaviorTree
             return this.m_cParent;
         }
 
+		/// <summary>
+		/// Gets the parent I.
+		/// </summary>
+		/// <returns>The parent I.</returns>
+		public int GetParentID()
+		{
+			return this.m_iParentID;
+		}
+
         /// <summary>
         /// 获取子节点列表
         /// </summary>
@@ -88,6 +132,11 @@ namespace Game.AIBehaviorTree
         {
             return this.m_lstChildren;
         }
+
+		public List<int> GetChildrenIDList()
+		{
+			return this.m_lstChildrenID;
+		}
 
         /// <summary>
         /// 获取子节点个数
@@ -116,6 +165,15 @@ namespace Game.AIBehaviorTree
             this.m_lstChildren.Add(node);
         }
 
+		/// <summary>
+		/// Adds the child.
+		/// </summary>
+		/// <param name="id">Identifier.</param>
+		public void AddChild( int id )
+		{
+			this.m_lstChildrenID.Add(id);
+		}
+
         /// <summary>
         /// 交换子节点
         /// </summary>
@@ -131,19 +189,25 @@ namespace Game.AIBehaviorTree
             BNode node = this.m_lstChildren[index1];
             this.m_lstChildren[index1] = this.m_lstChildren[index2];
             this.m_lstChildren[index2] = this.m_lstChildren[index1];
-        }
-        
+
+			this.m_lstChildrenID[index1] = this.m_lstChildrenID[index2];
+			this.m_lstChildrenID[index2] = this.m_lstChildrenID[index1];
+		}
+		
         /// <summary>
-        /// 删除子节点
+        /// Removes the child.
         /// </summary>
-        /// <param name="index"></param>
-        public virtual void RemoveChild(int index)
+        /// <param name="id">Identifier.</param>
+        public virtual void RemoveChild(int id)
         {
-            if (this.m_lstChildren.Count <= index || index < 0 )
-            {
-                return;
-            }
-            this.m_lstChildren.RemoveAt(index);
+			for(int i = 0 ; i<this.m_lstChildrenID.Count ; i++)
+			{
+				if( this.m_lstChildrenID[i] == id )
+				{
+					this.m_lstChildrenID.RemoveAt(i);
+					return;
+				}
+			}
         }
     }
 }

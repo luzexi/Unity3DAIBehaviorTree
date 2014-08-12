@@ -38,15 +38,17 @@ public class BNodeFactory
 		m_mapGen.Add(2,typeof(BNodeDecoratorNothing));
 	}
 
-	public BNode Create( int typeid)
+	public BNode Create( int typeid )
 	{
 		if( m_mapGen.ContainsKey(typeid) )
 		{
+			Debug.Log("typeid "+typeid);
 			Type t = this.m_mapGen[typeid];
 			BNode node = Activator.CreateInstance(t) as BNode;
 			node.SetTypeID(typeid);
 			return node;
 		}
+		Debug.LogError("The typeid is none : " + typeid);
 		return null;
 	}
 

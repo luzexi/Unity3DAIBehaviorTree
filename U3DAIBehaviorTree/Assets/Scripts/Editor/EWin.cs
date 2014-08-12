@@ -15,20 +15,20 @@ public class EWin : EditorWindow
 
 	//
 	private Rect rect = new Rect(100,100,100,100);
-	private Vector2 m_cScrollPos;
+	private Vector2 m_cScrollPos = new Vector2(0,0);
 	private string m_strInputName = "";
 
 	[@MenuItem("ai/ewin")]
 	static void init()
 	{
 		EWin ewin = (EWin)EditorWindow.GetWindow(typeof(EWin));
+		ewin.m_cScrollPos = new Vector2(0,ewin.maxSize.y/2-300);
 	}
 
 	void OnGUI()
 	{
 		//////////////////// draw the tree /////////////////////
 		this.m_cScrollPos = GUI.BeginScrollView(new Rect(0,0,position.width , position.height) , this.m_cScrollPos , new Rect(0,0,this.maxSize.x,this.maxSize.y));
-		
 		BeginWindows();
 		if(cur_tree != null )
 		{
@@ -76,7 +76,7 @@ public class EWin : EditorWindow
 		y+=40;
 		if(GUI.Button(new Rect(x,y,200,40),"Save BTree"))
 		{
-			//
+			EditorBTreeMgr.sInstance.SaveEx();
 			AssetDatabase.Refresh();
 		}
 		y+=40;
@@ -137,6 +137,13 @@ public class EWin : EditorWindow
 		GUI.Label(new Rect(x,y,200,20) , "=======================");
 		y+=20;
 
+		if(cur_tree != null)
+		{
+			GUI.Label(new Rect(x,y,200,20),"TreeID:"+cur_tree.m_iID);
+			y+=20;
+			GUI.Label(new Rect(x,y,200,20),"TreeName:"+cur_tree.m_strDesc);
+			y+=20;
+		}
 		select_create_node_id = EditorGUI.Popup(new Rect(x,y,100,40),select_create_node_id,BNodeFactory.sInstance.GetNodeLst());
 		if(GUI.Button(new Rect(x+100,y,100,40),"create node"))
 		{

@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿using UnityEngine;
+using System;
+using System.IO;
+using System.Collections;
 using System.Collections.Generic;
 
 //  AIManager.cs
@@ -14,24 +17,20 @@ namespace Game.AIBehaviorTree
     /// </summary>
     public class AIManager
     {
-        private static Dictionary<int, BTree> m_mapBTree = new Dictionary<int, BTree>();   //行为树集合
+		private static AIManager s_cInstance;
+		public static AIManager sInstance
+		{
+			get
+			{
+				if(s_cInstance == null)
+				{
+					s_cInstance = new AIManager();
+				}
+				return s_cInstance;
+			}
+		}
 
-        /// <summary>
-        /// 新增行为树
-        /// </summary>
-        public void IncBTree()
-        {
-            for (int i = 1; ; i++)
-            {
-                if (!m_mapBTree.ContainsKey(i))
-                {
-                    BTree bTree = new BTree();
-                    bTree.m_iID = i;
-                    m_mapBTree.Add(i, bTree);
-                    return;
-                }
-            }
-        }
+        private Dictionary<int, BTree> m_mapBTree = new Dictionary<int, BTree>();   //行为树集合
 
         /// <summary>
         /// 删除行为树
@@ -56,19 +55,19 @@ namespace Game.AIBehaviorTree
         }
 
         /// <summary>
-        /// 保存数据
-        /// </summary>
-        public void Save()
-        { 
-            //
-        }
-
-        /// <summary>
         /// 加载数据
         /// </summary>
-        public void Load()
+        public void Load( byte[] data )
         { 
-            //
+			BinaryReader br = new BinaryReader( new MemoryStream(data));
+			int count = br.ReadInt32();
+			this.m_mapBTree.Clear();
+			for(int i = 0 ; i<count ; i++)
+			{
+				BTree tree = new BTree();
+				tree.Read(br);
+				this.m_mapBTree.Add(tree.m_iID , tree);
+			}
         }
     }
 }
