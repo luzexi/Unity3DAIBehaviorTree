@@ -4,6 +4,10 @@ Unity3DAIBehaviorTree
 专为Unity3D打造的AI行为树,包括ai编辑器<br>
 更多内容请关注: http://www.luzexi.com<br>
 
+<br>
+![github](https://github.com/luzexi/Unity3DAIBehaviorTree/blob/master/img.png "编辑器")
+<br>
+
  行为树(Behavior Tree)具有如下的特性：<br>
 <br>
 它只有4大类型的Node：<br>
