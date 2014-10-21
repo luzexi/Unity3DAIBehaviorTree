@@ -2,6 +2,7 @@
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
+using LitJson;
 
 
 
@@ -28,12 +29,15 @@ namespace Game.AIBehaviorTree
     /// </summary>
     public abstract class BNode
     {
+		//value
 		protected int m_iID;	//ID
         protected int m_iTypeID;    //类型ID
-        protected BNode m_cParent;  //父节点
 		protected int m_iParentID;	//parent id
-        protected List<BNode> m_lstChildren = new List<BNode>();   //子节点
 		protected List<int> m_lstChildrenID = new List<int>();	//children id
+
+		//parent
+		protected BNode m_cParent;  //父节点
+		protected List<BNode> m_lstChildren = new List<BNode>();   //子节点
 
 		public virtual void Read( BinaryReader br )
 		{
@@ -47,6 +51,20 @@ namespace Game.AIBehaviorTree
 				int id = br.ReadInt32();
 				this.m_lstChildrenID.Add(id);
 			}
+		}
+
+		public virtual void ReadJson( JsonData json )
+		{
+			this.m_iID = int.Parse(json["id"].ToJson());
+			this.m_iTypeID = int.Parse(json["typeid"].ToJson());
+		}
+
+		public virtual void WriteJson( JsonData node )
+		{
+			JsonData json = new JsonData();
+			json["id"] = this.m_iID;
+			json["typeid"] = this.m_iTypeID;
+			node["node"] = json;
 		}
 
 		public virtual void Write( BinaryWriter bw )

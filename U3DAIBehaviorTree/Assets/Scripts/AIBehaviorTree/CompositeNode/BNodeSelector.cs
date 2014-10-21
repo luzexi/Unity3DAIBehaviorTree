@@ -14,6 +14,11 @@ namespace Game.AIBehaviorTree
     /// </summary>
     public class BNodeSelector : BNodeComposite
     {
+		public override string GetName ()
+		{
+			return "Selector";
+		}
+
         /// <summary>
         /// 执行
         /// </summary>

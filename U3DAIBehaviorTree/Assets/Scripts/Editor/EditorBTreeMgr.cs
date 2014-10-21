@@ -6,6 +6,7 @@ using System.IO;
 using System.Runtime;
 using System.Collections;
 using System.Collections.Generic;
+using LitJson;
 
 //	EditorBTreeMgr.cs
 //	Author: Lu Zexi
@@ -41,40 +42,46 @@ public class EditorBTreeMgr
 
 	public void SaveEx()
 	{
-		string filepath = EditorUtility.SaveFilePanel("Behavior Tree" , Application.dataPath , "","bytes");
-		BinaryWriter bw = new BinaryWriter(File.Create(filepath));
-		bw.Write(this.m_mapTree.Count);
-		foreach( KeyValuePair<int , EditorBTree> item in this.m_mapTree )
-		{
-			item.Value.WriteEx(bw);
-		}
-		bw.Close();
+//		string filepath = EditorUtility.SaveFilePanel("Behavior Tree" , Application.dataPath , "","bytes");
+//		BinaryWriter bw = new BinaryWriter(File.Create(filepath));
+//		bw.Write(this.m_mapTree.Count);
+//		foreach( KeyValuePair<int , EditorBTree> item in this.m_mapTree )
+//		{
+//			item.Value.WriteEx(bw);
+//		}
+//		bw.Close();
 	}
 
 	public void Save()
 	{
-		string filepath = EditorUtility.SaveFilePanel("Behavior Tree" , Application.dataPath , "","btree");
+		string filepath = EditorUtility.SaveFilePanel("Behavior Tree" , Application.dataPath , "","json");
 		Debug.Log(filepath);
-		BinaryWriter bw = new BinaryWriter(File.Create(filepath));
-		bw.Write(this.m_mapTree.Count);
+		JsonData data = new JsonData();
+		data["trees"] = new JsonData();
+		data["trees"].SetJsonType(JsonType.Array);
 		foreach( KeyValuePair<int , EditorBTree> item in this.m_mapTree )
 		{
-			item.Value.Write(bw);
+			item.Value.WriteJson(data["trees"]);
 		}
-		bw.Close();
+		File.WriteAllText(filepath,data.ToJson());
 	}
 
 	public void Load()
 	{
-		string filepath = EditorUtility.OpenFilePanel("Bahvior Tree" , Application.dataPath ,"btree");
+		string filepath = EditorUtility.OpenFilePanel("Bahvior Tree" , Application.dataPath ,"json");
 		if(filepath == "") return;
 		this.m_mapTree.Clear();
-		BinaryReader br = new BinaryReader(File.Open(filepath,FileMode.Open));
-		int count = br.ReadInt32();
+		string txt = File.ReadAllText(filepath);
+//		Debug.Log(txt);
+//		JsonData json = JsonMapper.ToObject("{\"trees\":{\"id\":2,\"desc\":\"345_2\",\"node\":{\"id\":10,\"name\":\"Sequence_node\",\"node\":{\"id\":10,\"typeid\":0},\"typeid\":0,\"child\":}}}");
+		JsonData json = JsonMapper.ToObject(txt);
+		json = json["trees"];
+		int count = json.Count;
 		for(int i = 0 ; i<count ; i++)
 		{
 			EditorBTree bt = new EditorBTree();
-			bt.Read(br);
+			JsonData data = json[i];
+			bt.ReadJson(data);
 			this.m_mapTree.Add(bt.m_iID , bt);
 		}
 	}

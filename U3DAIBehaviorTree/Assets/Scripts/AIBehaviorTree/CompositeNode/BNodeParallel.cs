@@ -14,6 +14,11 @@ namespace Game.AIBehaviorTree
     /// </summary>
     public class BNodeParallel : BNodeComposite
     {
+		public override string GetName ()
+		{
+			return "Parallel";
+		}
+
         /// <summary>
         /// 执行
         /// </summary>

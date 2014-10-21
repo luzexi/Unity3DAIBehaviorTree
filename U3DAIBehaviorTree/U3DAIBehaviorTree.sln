@@ -5,6 +5,10 @@ Project("{062E2E59-9D93-D157-C4B4-BD9470ABE454}") = "U3DAIBehaviorTree", "Assemb
 EndProject
 Project("{062E2E59-9D93-D157-C4B4-BD9470ABE454}") = "U3DAIBehaviorTree", "Assembly-CSharp-Editor.csproj", "{5249E5DE-2B91-9AEB-F54D-5C69C86E1480}"
 EndProject
+Project("{062E2E59-9D93-D157-C4B4-BD9470ABE454}") = "U3DAIBehaviorTree", "Assembly-Boo-Editor.booproj", "{7BB6A068-2EA6-B9D4-5071-5D1575CE401B}"
+EndProject
+Project("{062E2E59-9D93-D157-C4B4-BD9470ABE454}") = "U3DAIBehaviorTree", "Assembly-UnityScript-Editor.unityproj", "{A2480485-160C-3978-29CC-A729BCF6AF23}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,11 +23,19 @@ Global
 		{5249E5DE-2B91-9AEB-F54D-5C69C86E1480}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5249E5DE-2B91-9AEB-F54D-5C69C86E1480}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5249E5DE-2B91-9AEB-F54D-5C69C86E1480}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BB6A068-2EA6-B9D4-5071-5D1575CE401B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BB6A068-2EA6-B9D4-5071-5D1575CE401B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BB6A068-2EA6-B9D4-5071-5D1575CE401B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BB6A068-2EA6-B9D4-5071-5D1575CE401B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2480485-160C-3978-29CC-A729BCF6AF23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2480485-160C-3978-29CC-A729BCF6AF23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2480485-160C-3978-29CC-A729BCF6AF23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2480485-160C-3978-29CC-A729BCF6AF23}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																																														GlobalSection(MonoDevelopProperties) = preSolution
+																																																																GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1

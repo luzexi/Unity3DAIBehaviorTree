@@ -33,9 +33,9 @@ public class BNodeFactory
 
 	public BNodeFactory()
 	{
-		m_mapGen.Add(0,typeof(BNodeActionNothing));
-		m_mapGen.Add(1,typeof(BNodeConditionNothing));
-		m_mapGen.Add(2,typeof(BNodeDecoratorNothing));
+		m_mapGen.Add(0,typeof(BNodeSequence));
+		m_mapGen.Add(1,typeof(BNodeSelector));
+		m_mapGen.Add(2,typeof(BNodeParallel));
 	}
 
 	public BNode Create( int typeid )
