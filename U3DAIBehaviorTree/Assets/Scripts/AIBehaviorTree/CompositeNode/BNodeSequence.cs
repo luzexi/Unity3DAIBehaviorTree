@@ -14,10 +14,18 @@ namespace Game.AIBehaviorTree
     /// </summary>
     public class BNodeSequence : BNodeComposite
     {
+		private int m_iRuningIndex;
+
 		public BNodeSequence()
 			:base()
 		{
 			this.m_strName = "seq";
+		}
+
+		//on enter
+		public override void OnEnter (BInput input)
+		{
+			this.m_iRuningIndex = 0;
 		}
 
         /// <summary>
@@ -27,12 +35,24 @@ namespace Game.AIBehaviorTree
         /// <returns></returns>
 		public override ActionResult Excute(BInput input)
         {
-            for (int i = 0; i < this.m_lstChildren.Count; i++)
-            {
-				if (this.m_lstChildren[i].Excute(input) == ActionResult.FAILURE)
-					return ActionResult.FAILURE;
-            }
-			return ActionResult.SUCCESS;
+			if(this.m_iRuningIndex >= this.m_lstChildren.Count)
+			{
+				return ActionResult.SUCCESS;
+			}
+
+			BNode node = this.m_lstChildren[this.m_iRuningIndex];
+
+			ActionResult res = node.RunNode(input);
+
+			if(res == ActionResult.FAILURE)
+				return ActionResult.FAILURE;
+
+			if(res == ActionResult.SUCCESS)
+			{
+				this.m_iRuningIndex++;
+			}
+
+			return ActionResult.RUNNING;
         }
     }
 }

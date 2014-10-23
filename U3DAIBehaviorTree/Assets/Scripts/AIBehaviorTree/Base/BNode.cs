@@ -104,6 +104,23 @@ namespace Game.AIBehaviorTree
 			return json;
 		}
 
+		private ActionResult m_eState;
+		public ActionResult RunNode(BInput input)
+		{
+			if(this.m_eState == ActionResult.NONE)
+			{
+				this.OnEnter(input);
+				this.m_eState = ActionResult.RUNNING;
+			}
+			ActionResult res = this.Excute(input);
+			if(res != ActionResult.RUNNING)
+			{
+				this.OnExit(input);
+				this.m_eState = ActionResult.NONE;
+			}
+			return res;
+		}
+
 		//enter
 		public virtual void OnEnter(BInput input)
 		{

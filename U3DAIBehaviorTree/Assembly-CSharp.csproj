@@ -61,9 +61,9 @@
      <Compile Include="Assets\Scripts\AIBehaviorTree\CompositeNode\BNodeParallel.cs" />
      <Compile Include="Assets\Scripts\AIBehaviorTree\CompositeNode\BNodeSelector.cs" />
      <Compile Include="Assets\Scripts\AIBehaviorTree\CompositeNode\BNodeSequence.cs" />
-     <Compile Include="Assets\Scripts\AIBehaviorTree\CompositeNode\Parallel\BNodeParallelFallOnAll.cs" />
+     <Compile Include="Assets\Scripts\AIBehaviorTree\CompositeNode\Parallel\BNodeParallelAllFail.cs" />
+     <Compile Include="Assets\Scripts\AIBehaviorTree\CompositeNode\Parallel\BNodeParallelAllSuccess.cs" />
      <Compile Include="Assets\Scripts\AIBehaviorTree\CompositeNode\Parallel\BNodeParallelHybird.cs" />
-     <Compile Include="Assets\Scripts\AIBehaviorTree\CompositeNode\Parallel\BNodeParallelSucceeOnAll.cs" />
      <Compile Include="Assets\Scripts\AIBehaviorTree\ConditionNode\BNodeConditionNothing.cs" />
      <Compile Include="Assets\Scripts\AIBehaviorTree\DecoratorNode\BNodeDecoratorNothing.cs" />
      <Compile Include="Assets\Scripts\AIBehaviorTree\Input\BInput.cs" />

@@ -9,6 +9,8 @@ using LitJson;
 //	Author: Lu Zexi
 //	2014-08-07
 
+
+
 namespace Game.AIBehaviorTree
 {
 	/// <summary>
@@ -23,6 +25,7 @@ namespace Game.AIBehaviorTree
 		{
 		}
 
+		//write json
 		public void WriteJson( JsonData parent )
 		{
 			JsonData json = new JsonData();
@@ -36,6 +39,7 @@ namespace Game.AIBehaviorTree
 			parent.Add(json);
 		}
 
+		//read json
 		public void ReadJson(JsonData json)
 		{
 			this.m_strName = json["name"].ToString();
@@ -49,14 +53,21 @@ namespace Game.AIBehaviorTree
 			}
 		}
 
+		//set root node
 		public void SetRoot( BNode node )
 		{
 			this.m_cRoot = node;
 		}
 
+		//clear root node
 		public void Clear()
 		{
 			this.m_cRoot = null;
+		}
+
+		public void Run( BInput input )
+		{
+			this.m_cRoot.Excute(input);
 		}
 	}
 

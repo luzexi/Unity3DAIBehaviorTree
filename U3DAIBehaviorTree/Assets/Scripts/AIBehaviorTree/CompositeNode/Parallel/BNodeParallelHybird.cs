@@ -14,8 +14,17 @@ namespace Game.AIBehaviorTree
     /// </summary>
     public class BNodeParallelHybird : BNodeParallel
     {
-        private bool m_bValue;    //比较值
-        private int m_iNum; //数量
+        public bool SuccessOrFailure;    //比较值
+		public int Num; //数量
+
+		private int m_iRunningIndex;	//running
+		private int m_iSuccessNum;	//success num
+
+		public override void OnEnter (BInput input)
+		{
+			this.m_iRunningIndex = 0;
+			this.m_iSuccessNum = 0;
+		}
 
 		/// <summary>
 		/// 执行
@@ -24,25 +33,29 @@ namespace Game.AIBehaviorTree
 		/// <returns></returns>
 		public override ActionResult Excute(BInput input)
 		{
-			int trueNum = 0;
-			for (int i = 0 ; i < this.m_lstChildren.Count ; i++)
+			if( this.m_iRunningIndex >= this.m_lstChildren.Count)
 			{
-				if( this.m_lstChildren[i].Excute(input) == ActionResult.SUCCESS )
+				if(this.SuccessOrFailure)
 				{
-					trueNum++;
+					if( this.Num <= this.m_iSuccessNum)
+						return ActionResult.SUCCESS;
 				}
+				else
+				{
+					if( this.Num <= (this.m_lstChildren.Count - this.m_iSuccessNum))
+						return ActionResult.SUCCESS;
+				}
+				return ActionResult.FAILURE;
 			}
-			if(m_bValue)
-			{
-				if( trueNum >= this.m_iNum )
-					return ActionResult.SUCCESS;
-			}
-			else
-			{
-				if( (this.m_lstChildren.Count - trueNum) >= this.m_iNum )
-					return ActionResult.SUCCESS;
-			}
-			return ActionResult.FAILURE;
+
+			ActionResult res = this.m_lstChildren[this.m_iRunningIndex].RunNode(input);
+			if(res == ActionResult.SUCCESS)
+				this.m_iSuccessNum++;
+
+			if(res != ActionResult.RUNNING)
+				this.m_iRunningIndex++;
+
+			return ActionResult.RUNNING;
 		}
     }
 }
