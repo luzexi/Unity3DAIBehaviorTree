@@ -301,17 +301,30 @@ namespace Game.AIBehaviorTree
 				if(evt.type == EventType.ContextClick)
 				{
 					GenericMenu menu = new GenericMenu();
-					menu.AddItem(new GUIContent("create/decisions/sequence"), false , menu_add_callback , typeof(BNodeSequence));
-					menu.AddItem(new GUIContent("create/decisions/selector"), false , menu_add_callback , typeof(BNodeSelector));
-					menu.AddItem(new GUIContent("create/decisions/parallel"), false , menu_add_callback , typeof(BNodeParallel));
+					foreach(Type item in BNodeFactory.sInstance.m_lstComposite)
+					{
+						menu.AddItem(new GUIContent("Create/Composite/"+item.Name), false , menu_add_callback , item);
+					}
 
-					menu.AddItem(new GUIContent("create/action/no"), false , menu_add_callback , typeof(BNodeConditionNothing));
+					foreach(Type item in BNodeFactory.sInstance.m_lstAction)
+					{
+						menu.AddItem(new GUIContent("Create/Action/"+item.Name), false , menu_add_callback , item);
+					}
+					foreach(Type item in BNodeFactory.sInstance.m_lstCondition)
+					{
+						menu.AddItem(new GUIContent("Create/Condition/"+item.Name), false , menu_add_callback , item);
+					}
+					foreach(Type item in BNodeFactory.sInstance.m_lstDecorator)
+					{
+						menu.AddItem(new GUIContent("Create/Decorator/"+item.Name), false , menu_add_callback , item);
+					}
 
-					menu.AddItem(new GUIContent("switch/decisions/sequence"), false , menu_switch_callback , typeof(BNodeSequence));
-					menu.AddItem(new GUIContent("switch/decisions/selector"), false , menu_switch_callback , typeof(BNodeSelector));
-					menu.AddItem(new GUIContent("switch/decisions/parallel"), false , menu_switch_callback , typeof(BNodeParallel));
+					foreach(Type item in BNodeFactory.sInstance.m_lstComposite)
+					{
+						menu.AddItem(new GUIContent("Switch/Composite/"+item.Name), false , menu_switch_callback , item);
+					}
 
-					menu.AddItem(new GUIContent("delete"), false , menu_delete_node ,"");
+					menu.AddItem(new GUIContent("Delete"), false , menu_delete_node ,"");
 					menu.ShowAsContext();
 				}
 				if(evt.button == 0 && evt.type == EventType.MouseDown && this != BTreeWin.cur_tree.m_cRoot)
