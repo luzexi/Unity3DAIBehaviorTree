@@ -20,6 +20,13 @@ namespace Game.AIBehaviorTree
 		private int m_iRunningIndex;	//running
 		private int m_iSuccessNum;	//success num
 
+		public BNodeParallelHybird()
+			:base()
+		{
+			this.m_strName = "ParallelHybird";
+		}
+
+		//onenter
 		public override void OnEnter (BInput input)
 		{
 			this.m_iRunningIndex = 0;

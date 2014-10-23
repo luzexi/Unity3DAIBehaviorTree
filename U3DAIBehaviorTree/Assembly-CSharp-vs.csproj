@@ -58,7 +58,9 @@
      <Compile Include="Assets\Scripts\AIBehaviorTree\Base\BNodeDecorator.cs" />
      <Compile Include="Assets\Scripts\AIBehaviorTree\Base\BTree.cs" />
      <Compile Include="Assets\Scripts\AIBehaviorTree\Base\CustomAction.cs" />
+     <Compile Include="Assets\Scripts\AIBehaviorTree\CompositeNode\BNodeIterator.cs" />
      <Compile Include="Assets\Scripts\AIBehaviorTree\CompositeNode\BNodeParallel.cs" />
+     <Compile Include="Assets\Scripts\AIBehaviorTree\CompositeNode\BNodeRandom.cs" />
      <Compile Include="Assets\Scripts\AIBehaviorTree\CompositeNode\BNodeSelector.cs" />
      <Compile Include="Assets\Scripts\AIBehaviorTree\CompositeNode\BNodeSequence.cs" />
      <Compile Include="Assets\Scripts\AIBehaviorTree\CompositeNode\Parallel\BNodeParallelAllFail.cs" />
@@ -76,7 +78,16 @@
      <Compile Include="Assets\Scripts\AIBehaviorTree\LitJson\JsonWriter.cs" />
      <Compile Include="Assets\Scripts\AIBehaviorTree\LitJson\Lexer.cs" />
      <Compile Include="Assets\Scripts\AIBehaviorTree\LitJson\ParserToken.cs" />
+     <Compile Include="Assets\Scripts\Test\ActionAttack.cs" />
+     <Compile Include="Assets\Scripts\Test\ActionGoHome.cs" />
+     <Compile Include="Assets\Scripts\Test\ActionGoShopping.cs" />
+     <Compile Include="Assets\Scripts\Test\ActionGoWork.cs" />
+     <Compile Include="Assets\Scripts\Test\ActionMoveRound.cs" />
+     <Compile Include="Assets\Scripts\Test\ActionSkill.cs" />
+     <Compile Include="Assets\Scripts\Test\ConditionHp.cs" />
+     <Compile Include="Assets\Scripts\Test\ConditionMp.cs" />
      <Compile Include="Assets\Scripts\Test\NewBehaviourScript.cs" />
+     <Compile Include="Assets\Scripts\Test\TestInput.cs" />
      <None Include="Assets\RAIN\Editor\Shaders\AspectSphereShader.shader" />
      <None Include="Assets\RAIN\Editor\Shaders\VisualSensorLineShader.shader" />
      <None Include="Assets\RAIN\Editor\Shaders\NavMeshContourShader.shader" />

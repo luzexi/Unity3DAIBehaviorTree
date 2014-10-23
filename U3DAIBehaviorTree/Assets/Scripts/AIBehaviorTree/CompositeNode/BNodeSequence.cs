@@ -19,7 +19,7 @@ namespace Game.AIBehaviorTree
 		public BNodeSequence()
 			:base()
 		{
-			this.m_strName = "seq";
+			this.m_strName = "Sequence";
 		}
 
 		//on enter

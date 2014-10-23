@@ -19,7 +19,7 @@ namespace Game.AIBehaviorTree
 		public BNodeParallel()
 			:base()
 		{
-			this.m_strName = "par";
+			this.m_strName = "Parallel";
 		}
 
 		//onenter

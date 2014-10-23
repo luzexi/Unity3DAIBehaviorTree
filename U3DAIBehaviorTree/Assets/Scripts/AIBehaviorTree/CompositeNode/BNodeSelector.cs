@@ -19,7 +19,7 @@ namespace Game.AIBehaviorTree
 		public BNodeSelector()
 			:base()
 		{
-			this.m_strName = "sel";
+			this.m_strName = "Selector";
 		}
 
 		//onenter

@@ -1,11 +1,35 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/AIBehaviorTree/CompositeNode/BNodeSequence.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/AIBehaviorTree/CompositeNode/BNodePriority.cs">
     <Files>
-      <File FileName="Assets/Scripts/AIBehaviorTree/CompositeNode/BNodeSequence.cs" Line="45" Column="32" />
-      <File FileName="Assets/Scripts/AIBehaviorTree/CompositeNode/BNodeSelector.cs" Line="44" Column="4" />
-      <File FileName="Assets/Scripts/AIBehaviorTree/Base/BNode.cs" Line="108" Column="7" />
-      <File FileName="Assets/Scripts/AIBehaviorTree/CompositeNode/BNodeParallel.cs" Line="27" Column="32" />
+      <File FileName="Assets/Scripts/AIBehaviorTree/CompositeNode/Parallel/BNodeParallelAllFail.cs" Line="23" Column="39" />
+      <File FileName="Assets/Scripts/AIBehaviorTree/Input/BInput.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/AIBehaviorTree/AIManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/AIBehaviorTree/BNodeFactory.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/AIBehaviorTree/Base/BNode.cs" Line="273" Column="26" />
+      <File FileName="Assets/Scripts/Test/ActionAttack.cs" Line="35" Column="32" />
+      <File FileName="Assets/Scripts/AIBehaviorTree/Base/BNodeAction.cs" Line="10" Column="30" />
+      <File FileName="Assets/Scripts/Test/TestInput.cs" Line="7" Column="32" />
+      <File FileName="Assets/Scripts/Test/ActionGoHome.cs" Line="32" Column="35" />
+      <File FileName="Assets/Scripts/Test/ActionGoShopping.cs" Line="27" Column="35" />
+      <File FileName="Assets/Scripts/Test/ActionGoWork.cs" Line="28" Column="35" />
+      <File FileName="Assets/Scripts/Test/ActionMoveRound.cs" Line="28" Column="33" />
+      <File FileName="Assets/Scripts/Test/ActionSkill.cs" Line="29" Column="36" />
+      <File FileName="Assets/Scripts/Test/ConditionHp.cs" Line="19" Column="4" />
+      <File FileName="Assets/Scripts/Test/ConditionMp.cs" Line="21" Column="4" />
+      <File FileName="Assets/Scripts/Test/NewBehaviourScript.cs" Line="16" Column="3" />
+      <File FileName="Assets/Scripts/AIBehaviorTree/BTreeWin.cs" Line="161" Column="23" />
+      <File FileName="Assets/Scripts/AIBehaviorTree/Base/BTree.cs" Line="70" Column="32" />
+      <File FileName="Assets/Scripts/AIBehaviorTree/Base/BNodeComposite.cs" Line="14" Column="19" />
+      <File FileName="Assets/Scripts/AIBehaviorTree/Base/BNodeCondition.cs" Line="15" Column="38" />
+      <File FileName="Assets/Scripts/AIBehaviorTree/Base/BNodeDecorator.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/AIBehaviorTree/CompositeNode/BNodeSequence.cs" Line="22" Column="30" />
+      <File FileName="Assets/Scripts/AIBehaviorTree/CompositeNode/BNodeSelector.cs" Line="22" Column="30" />
+      <File FileName="Assets/Scripts/AIBehaviorTree/CompositeNode/BNodeParallel.cs" Line="28" Column="28" />
+      <File FileName="Assets/Scripts/AIBehaviorTree/CompositeNode/Parallel/BNodeParallelAllSuccess.cs" Line="24" Column="4" />
+      <File FileName="Assets/Scripts/AIBehaviorTree/CompositeNode/Parallel/BNodeParallelHybird.cs" Line="29" Column="12" />
+      <File FileName="Assets/Scripts/AIBehaviorTree/CompositeNode/BNodeRandom.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/AIBehaviorTree/CompositeNode/BNodePriority.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

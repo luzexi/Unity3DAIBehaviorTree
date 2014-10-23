@@ -255,6 +255,11 @@ namespace Game.AIBehaviorTree
 			{
 				this.m_cParent.ReplaceChild(this,node);
 			}
+			else if(BTreeWin.cur_tree.m_cRoot == this )
+			{
+				BTreeWin.cur_tree.m_cRoot = node;
+			}
+			BTreeWin.cur_node = node;
 			BTreeWin.sInstance.Repaint();
 		}
 

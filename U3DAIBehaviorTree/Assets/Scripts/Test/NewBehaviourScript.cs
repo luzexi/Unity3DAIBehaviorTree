@@ -5,28 +5,31 @@ using Game.AIBehaviorTree;
 
 public class NewBehaviourScript : MonoBehaviour {
 
+	public TextAsset text;
+
+	private BTree tree;
+
+	private TestInput input;
+
 	// Use this for initialization
-	void Start () {
-	
+	void Start ()
+	{
+		this.input = new TestInput();
 	}
 	
 	// Update is called once per frame
-	void Update () {
-	
+	void Update ()
+	{
+		if(tree != null)
+			tree.Run(this.input);
 	}
 
 	void OnGUI()
 	{
-		if(GUI.Button(new Rect(0,0,100,40),"button"))
+		if(GUI.Button(new Rect(0,0,100,40),"load"))
 		{
-			TextAsset ta = Resources.Load("tree2") as TextAsset;
-			if(ta == null)
-				Debug.Log("null.");
-			Debug.Log(ta.bytes.Length);
-//			AIManager.sInstance.Load(ta.bytes);
-//			byte[] data = File.ReadAllBytes(Application.dataPath + "/Resources/tree2.bytes");
-//			Debug.Log(data.Length);
-//			AIManager.sInstance.Load(data);
+			BTreeMgr.sInstance.Load(text.text);
+			this.tree = BTreeMgr.sInstance.GetTree("test_tree");
 		}
 	}
 }

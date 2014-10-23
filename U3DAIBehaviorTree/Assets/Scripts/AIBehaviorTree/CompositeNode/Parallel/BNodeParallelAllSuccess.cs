@@ -17,6 +17,13 @@ namespace Game.AIBehaviorTree
 		private int m_iRunningIndex;	//running index
 		private ActionResult m_eResult;	//result
 
+		public BNodeParallelAllSuccess()
+			:base()
+		{
+			this.m_strName = "ParallelAllSuccess";
+		}
+
+		//onenter
 		public override void OnEnter (BInput input)
 		{
 			this.m_iRunningIndex = 0;

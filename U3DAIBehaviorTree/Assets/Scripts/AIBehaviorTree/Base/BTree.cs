@@ -67,7 +67,7 @@ namespace Game.AIBehaviorTree
 
 		public void Run( BInput input )
 		{
-			this.m_cRoot.Excute(input);
+			this.m_cRoot.RunNode(input);
 		}
 	}
 

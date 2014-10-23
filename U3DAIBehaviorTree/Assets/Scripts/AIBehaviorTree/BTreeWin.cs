@@ -162,6 +162,8 @@ public class BTreeWin : EditorWindow
 		{
 			GUI.Label(new Rect(x,y,200,20),"TreeName: "+cur_tree.m_strName);
 			y+=20;
+			cur_tree.m_strName = GUI.TextField(new Rect(x,y,100,20),cur_tree.m_strName);
+			y+=20;
 		}
 		select_create_node_id = EditorGUI.Popup(new Rect(x,y,100,40),select_create_node_id,BNodeFactory.sInstance.GetNodeLst());
 		if(GUI.Button(new Rect(x+100,y,100,40),"create root"))
