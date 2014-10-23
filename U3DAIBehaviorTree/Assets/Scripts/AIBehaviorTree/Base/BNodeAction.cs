@@ -14,5 +14,6 @@ namespace Game.AIBehaviorTree
     /// </summary>
     public class BNodeAction : BNode
     {
+		public CustomAction m_cAction;	//action
     }
 }

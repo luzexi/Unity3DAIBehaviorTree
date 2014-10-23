@@ -19,14 +19,14 @@ namespace Game.AIBehaviorTree
 		/// </summary>
 		/// <param name="input"></param>
 		/// <returns></returns>
-		public override bool Excute(BInput input)
+		public override ActionResult Excute(BInput input)
 		{
-			bool result = true;
+			ActionResult result = ActionResult.SUCCESS;
 			for (int i = 0 ; i < this.m_lstChildren.Count ; i++)
 			{
-				if( this.m_lstChildren[i].Excute(input) )
+				if( this.m_lstChildren[i].Excute(input) == ActionResult.SUCCESS )
 				{
-					result = false;
+					result = ActionResult.FAILURE;
 				}
 			}
 			return result;

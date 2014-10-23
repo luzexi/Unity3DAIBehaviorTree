@@ -1,4 +1,12 @@
-﻿//using UnityEngine;
+﻿//using RAINEditor;
+public class test1
+{
+	public test1()
+	{
+		RAINEditor.Memory.BasicMemoryEditor s;
+	}
+}
+//using UnityEngine;
 //using UnityEditor;
 //using System.Collections;
 //using System.Collections.Generic;

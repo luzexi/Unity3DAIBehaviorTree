@@ -22,12 +22,12 @@ namespace Game.AIBehaviorTree
 		/// </summary>
 		/// <param name="input"></param>
 		/// <returns></returns>
-		public override bool Excute(BInput input)
+		public override ActionResult Excute(BInput input)
 		{
 			int trueNum = 0;
 			for (int i = 0 ; i < this.m_lstChildren.Count ; i++)
 			{
-				if( this.m_lstChildren[i].Excute(input) )
+				if( this.m_lstChildren[i].Excute(input) == ActionResult.SUCCESS )
 				{
 					trueNum++;
 				}
@@ -35,14 +35,14 @@ namespace Game.AIBehaviorTree
 			if(m_bValue)
 			{
 				if( trueNum >= this.m_iNum )
-					return true;
+					return ActionResult.SUCCESS;
 			}
 			else
 			{
 				if( (this.m_lstChildren.Count - trueNum) >= this.m_iNum )
-					return true;
+					return ActionResult.SUCCESS;
 			}
-			return false;
+			return ActionResult.FAILURE;
 		}
     }
 }

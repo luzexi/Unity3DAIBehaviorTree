@@ -1,8 +1,8 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
-
+using Game.AIBehaviorTree;
 
 
 //	BTreeWin.cs
@@ -111,13 +111,13 @@ public class BTreeWin : EditorWindow
 			{
 				cur_node = null;
 				EditorBTree tree = new EditorBTree();
-				tree.m_strDesc = this.m_strInputName + "_" + tree.m_iID;
+				tree.m_strName = this.m_strInputName;
 				EditorBTreeMgr.sInstance.Add(tree);
 				lst = EditorBTreeMgr.sInstance.GetTrees();
 				cur_tree = tree;
 				for(int i = 0 ; i<lst.Count ; i++ )
 				{
-					if(lst[i].m_iID == tree.m_iID)
+					if(lst[i].m_strName == tree.m_strName)
 					{
 						cur_tree_index = i;
 						break;
@@ -145,7 +145,7 @@ public class BTreeWin : EditorWindow
 		string[] treeNames = new string[lst.Count];
 		for(int i = 0 ; i<lst.Count ; i++ )
 		{
-			treeNames[i] = lst[i].m_strDesc;
+			treeNames[i] = lst[i].m_strName;
 		}
 		cur_tree_index = EditorGUI.Popup(new Rect(x,y,200,45),cur_tree_index,treeNames);
 		if(cur_tree_index != last_tree_index)
@@ -160,9 +160,7 @@ public class BTreeWin : EditorWindow
 		
 		if(cur_tree != null)
 		{
-			GUI.Label(new Rect(x,y,200,20),"TreeID:"+cur_tree.m_iID);
-			y+=20;
-			GUI.Label(new Rect(x,y,200,20),"TreeName:"+cur_tree.m_strDesc);
+			GUI.Label(new Rect(x,y,200,20),"TreeName: "+cur_tree.m_strName);
 			y+=20;
 		}
 		select_create_node_id = EditorGUI.Popup(new Rect(x,y,100,40),select_create_node_id,BNodeFactory.sInstance.GetNodeLst());
@@ -186,12 +184,12 @@ public class BTreeWin : EditorWindow
 		y+=20;
 		if(cur_node != null )
 		{
-			GUI.Label(new Rect(x,y,80,20),"Node Name:");
-			cur_node.m_strName = GUI.TextField(new Rect(x+80,y,120,20) , cur_node.m_strName);
-			y+=20;
-			GUI.Label(new Rect(x,y,200,15) , "=======================");
-			y+=15;
-			cur_node.m_cNode.DrawGUI(x,y);
+//			GUI.Label(new Rect(x,y,80,20),"Node Name:");
+//			cur_node.m_strName = GUI.TextField(new Rect(x+80,y,120,20) , cur_node.m_strName);
+//			y+=20;
+//			GUI.Label(new Rect(x,y,200,15) , "=======================");
+//			y+=15;
+//			cur_node.m_cNode.DrawGUI(x,y);
 		}
 		//
 		GUI.EndGroup();

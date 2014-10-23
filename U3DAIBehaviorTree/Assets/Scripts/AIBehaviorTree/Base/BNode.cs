@@ -13,6 +13,15 @@ using LitJson;
 
 namespace Game.AIBehaviorTree
 {
+	//action result
+	public enum ActionResult
+	{
+		SUCCESS,
+		RUNNING,
+		FAILURE,
+		NONE
+	}
+
     /// <summary>
     /// 节点类型
     /// </summary>
@@ -55,16 +64,13 @@ namespace Game.AIBehaviorTree
 
 		public virtual void ReadJson( JsonData json )
 		{
-			this.m_iID = int.Parse(json["id"].ToJson());
-			this.m_iTypeID = int.Parse(json["typeid"].ToJson());
+//			this.m_iID = int.Parse(json["id"].ToJson());
+//			this.m_iTypeID = int.Parse(json["typeid"].ToJson());
 		}
 
-		public virtual void WriteJson( JsonData node )
+		public virtual void WriteJson(JsonData json)
 		{
-			JsonData json = new JsonData();
-			json["id"] = this.m_iID;
-			json["typeid"] = this.m_iTypeID;
-			node["node"] = json;
+			//
 		}
 
 		public virtual void Write( BinaryWriter bw )
@@ -165,14 +171,23 @@ namespace Game.AIBehaviorTree
             return this.m_lstChildren.Count;
         }
 
-        /// <summary>
-        /// 执行
-        /// </summary>
-        /// <returns></returns>
-        public virtual bool Excute( BInput input )
-        {
-            return true;
-        }
+		//enter
+		public virtual void OnEnter(BInput input)
+		{
+			//
+		}
+		
+		//excute
+		public virtual ActionResult Excute(BInput input)
+		{
+			return ActionResult.SUCCESS;
+		}
+		
+		//exit
+		public virtual void OnExit(BInput input)
+		{
+			//
+		}
 
         /// <summary>
         /// 增加子节点

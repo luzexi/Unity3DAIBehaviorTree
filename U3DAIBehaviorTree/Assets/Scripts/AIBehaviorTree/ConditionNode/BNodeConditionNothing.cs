@@ -24,14 +24,15 @@ namespace Game.AIBehaviorTree
 		{
 			return "con";
 		}
+
         /// <summary>
         /// 执行
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public override bool Excute(BInput input)
+		public override ActionResult Excute(BInput input)
         {
-            return true;
+			return ActionResult.SUCCESS;
         }
 
 		/// <summary>

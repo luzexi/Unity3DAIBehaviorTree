@@ -24,13 +24,13 @@ namespace Game.AIBehaviorTree
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public override bool Excute(BInput input)
+		public override ActionResult Excute(BInput input)
         {
             for (int i = 0 ; i < this.m_lstChildren.Count ; i++)
             {
                 this.m_lstChildren[i].Excute(input);
             }
-            return true;
+			return ActionResult.SUCCESS;
         }
     }
 }

@@ -49,12 +49,14 @@
      <Compile Include="Assets\Scripts\AIBehaviorTree\AIManager.cs" />
      <Compile Include="Assets\Scripts\AIBehaviorTree\ActionNode\BNodeActionNothing.cs" />
      <Compile Include="Assets\Scripts\AIBehaviorTree\BNodeFactory.cs" />
+     <Compile Include="Assets\Scripts\AIBehaviorTree\BTreeWin.cs" />
      <Compile Include="Assets\Scripts\AIBehaviorTree\Base\BNode.cs" />
      <Compile Include="Assets\Scripts\AIBehaviorTree\Base\BNodeAction.cs" />
      <Compile Include="Assets\Scripts\AIBehaviorTree\Base\BNodeComposite.cs" />
      <Compile Include="Assets\Scripts\AIBehaviorTree\Base\BNodeCondition.cs" />
      <Compile Include="Assets\Scripts\AIBehaviorTree\Base\BNodeDecorator.cs" />
      <Compile Include="Assets\Scripts\AIBehaviorTree\Base\BTree.cs" />
+     <Compile Include="Assets\Scripts\AIBehaviorTree\Base\CustomAction.cs" />
      <Compile Include="Assets\Scripts\AIBehaviorTree\CompositeNode\BNodeParallel.cs" />
      <Compile Include="Assets\Scripts\AIBehaviorTree\CompositeNode\BNodeSelector.cs" />
      <Compile Include="Assets\Scripts\AIBehaviorTree\CompositeNode\BNodeSequence.cs" />
@@ -63,6 +65,9 @@
      <Compile Include="Assets\Scripts\AIBehaviorTree\CompositeNode\Parallel\BNodeParallelSucceedOnAll.cs" />
      <Compile Include="Assets\Scripts\AIBehaviorTree\ConditionNode\BNodeConditionNothing.cs" />
      <Compile Include="Assets\Scripts\AIBehaviorTree\DecoratorNode\BNodeDecoratorNothing.cs" />
+     <Compile Include="Assets\Scripts\AIBehaviorTree\EditorBNode.cs" />
+     <Compile Include="Assets\Scripts\AIBehaviorTree\EditorBTree.cs" />
+     <Compile Include="Assets\Scripts\AIBehaviorTree\EditorBTreeMgr.cs" />
      <Compile Include="Assets\Scripts\AIBehaviorTree\Input\BInput.cs" />
      <Compile Include="Assets\Scripts\Test\NewBehaviourScript.cs" />
      <None Include="Assets\RAIN\Editor\Shaders\AspectSphereShader.shader" />
