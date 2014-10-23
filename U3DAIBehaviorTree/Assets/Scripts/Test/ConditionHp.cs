@@ -2,8 +2,14 @@
 using System.Collections;
 
 
+//	ConditionHp.cs
+//	Author: Lu Zexi
+//	2014-10-23
+
+
 namespace Game.AIBehaviorTree
 {
+	//condition hp debug
 	public class ConditionHp : BNodeCondition
 	{
 		public int HP;

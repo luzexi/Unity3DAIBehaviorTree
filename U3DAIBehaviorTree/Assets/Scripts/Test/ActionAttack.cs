@@ -1,10 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//	ActionAttack.cs
+//	Author: Lu Zexi
+//	2014-10-23
 
 
 namespace Game.AIBehaviorTree
 {
+	//attack action
 	public class ActionAttack : BNodeAction
 	{
 		private bool over;

@@ -1,10 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//	ActionGoWork.cs
+//	Author: Lu Zexi
+//	2014-10-23
+
 
 namespace Game.AIBehaviorTree
 {
-
+	//go work debug
 	public class ActionGoWork : BNodeAction
 	{
 		private bool over = false;

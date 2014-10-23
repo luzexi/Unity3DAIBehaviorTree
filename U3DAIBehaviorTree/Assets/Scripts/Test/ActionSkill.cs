@@ -1,9 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//	ActionSkill.cs
+//	Author: Lu Zexi
+//	2014-10-23
+
+
 namespace Game.AIBehaviorTree
 {
-
+	//skill
 	public class ActionSkill : BNodeAction
 	{
 		private bool over = false;

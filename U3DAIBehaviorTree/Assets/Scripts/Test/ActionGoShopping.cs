@@ -1,9 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//	ActionGoShopping.cs
+//	Author: Lu Zexi
+//	2014-10-23
 
 namespace Game.AIBehaviorTree
 {
+	//go shopping debug
 	public class ActionGoShopping : BNodeAction
 	{
 		private bool over = false;

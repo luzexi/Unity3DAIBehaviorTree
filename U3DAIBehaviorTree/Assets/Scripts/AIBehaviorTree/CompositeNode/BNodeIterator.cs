@@ -17,6 +17,12 @@ namespace Game.AIBehaviorTree
 		private int m_iRunningIndex;
 		private int m_iRunningNum;
 
+		public BNodeIterator()
+			:base()
+		{
+			this.m_strName = "Iterator";
+		}
+
 		//onenter
 		public override void OnEnter (BInput input)
 		{

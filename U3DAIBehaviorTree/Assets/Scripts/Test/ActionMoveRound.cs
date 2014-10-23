@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-
+//	ActionMoveRound.cs
+//	Author: Lu Zexi
+//	2014-10-23
 
 namespace Game.AIBehaviorTree
 {
+	//move round debug
 	public class ActionMoveRound : BNodeAction
 	{
 		private bool over = false;

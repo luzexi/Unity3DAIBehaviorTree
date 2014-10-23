@@ -2,9 +2,14 @@
 using System.Collections;
 
 
+//	ConditionMp.cs
+//	Author: Lu Zexi
+//	2014-10-23
+
+
 namespace Game.AIBehaviorTree
 {
-
+	//condition mp debug
 	public class ConditionMp : BNodeCondition
 	{
 		public int MP;

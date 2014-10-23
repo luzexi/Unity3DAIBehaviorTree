@@ -2,6 +2,9 @@
 using System.Collections;
 
 
+//	ActionGoHome.cs
+//	Author: Lu Zexi
+//	2014-10-23
 
 
 namespace Game.AIBehaviorTree
