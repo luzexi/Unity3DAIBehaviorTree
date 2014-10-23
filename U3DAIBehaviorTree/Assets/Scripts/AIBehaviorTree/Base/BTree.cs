@@ -1,68 +1,64 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System;
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
+using LitJson;
 
-//  BTree.cs
-//  Author: Lu Zexi
-//  2014-06-07
-
+//	BTree.cs
+//	Author: Lu Zexi
+//	2014-08-07
 
 namespace Game.AIBehaviorTree
 {
-    /// <summary>
-    /// 行为树
-    /// </summary>
-    public class BTree
-    {
-        public int m_iID;  //ID
-        public string m_strDesc;   //描述
-        public BNode m_cRootNode;  //根节点
-		public List<BNode> m_lstNode = new List<BNode>();
+	/// <summary>
+	/// Behavior tree.
+	/// </summary>
+	public class BTree
+	{
+		public string m_strName;   //描述
+		public BNode m_cRoot;	//root
 
-        public BTree()
-        {
-            this.m_strDesc = "";
-            this.m_cRootNode = null;
-        }
-
-		public BNode GetNode( int id )
+		public BTree()
 		{
-			foreach( BNode item in this.m_lstNode )
-			{
-				if(item.GetID() == id )
-					return item;
-			}
-			return null;
 		}
 
-        /// <summary>
-		/// 读取数据
-        /// </summary>
-		public void Read( BinaryReader br )
-        { 
-			this.m_iID = br.ReadInt32();
-			this.m_strDesc = br.ReadString();
-			int count = br.ReadInt32();
-			for(int i = 0 ; i<count ; i++)
+		public void WriteJson( JsonData parent )
+		{
+			JsonData json = new JsonData();
+			json["name"] = this.m_strName;
+			if(this.m_cRoot != null )
 			{
-				int typeid = br.ReadInt32();
-				BNode node = BNodeFactory.sInstance.Create(typeid);
-				node.Read(br);
-				this.m_lstNode.Add(node);
+				json["node"] = new JsonData();
+				json["node"].SetJsonType(JsonType.Object);
+				json["node"] = this.m_cRoot.WriteJson();
 			}
-			foreach( BNode item in this.m_lstNode )
+			parent.Add(json);
+		}
+
+		public void ReadJson(JsonData json)
+		{
+			this.m_strName = json["name"].ToString();
+			this.m_cRoot = null;
+			if( json.Keys.Contains("node") )
 			{
-				BNode node = GetNode(item.GetParentID());
-				item.SetParent(node);
-				foreach( int child_id in item.GetChildrenIDList() )
-				{
-					node = GetNode(child_id);
-					if(node == null) Debug.LogError("The node is null.");
-					item.AddChild(node);
-				}
+				string typename = json["node"]["type"].ToString();
+				Type t = Type.GetType(typename);
+				this.m_cRoot = Activator.CreateInstance(t) as BNode;
+				this.m_cRoot.ReadJson(json["node"]);
 			}
-        }
-    }
+		}
+
+		public void SetRoot( BNode node )
+		{
+			this.m_cRoot = node;
+		}
+
+		public void Clear()
+		{
+			this.m_cRoot = null;
+		}
+	}
+
 }
+

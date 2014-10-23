@@ -9,7 +9,7 @@ using Game.AIBehaviorTree;
 //	Author: Lu Zexi
 //	2014-10-20
 
-
+#if UNITY_EDITOR
 
 //BTreeWin
 public class BTreeWin : EditorWindow
@@ -18,14 +18,14 @@ public class BTreeWin : EditorWindow
 	public static int NODE_HEIGHT = 20;
 	public static int GUI_WIDTH = 240;
 
-	public static EditorBTree cur_tree;	//current tree
-	public static EditorBNode cur_node;	//current node
+	public static BTree cur_tree;	//current tree
+	public static BNode cur_node;	//current node
 	public static BTreeWin sInstance = null;
 	private static int cur_tree_index = -1;
 	private static int last_tree_index = -1;
 	private static int select_create_node_id = -1;
 	
-	public static EditorBNode select;
+	public static BNode select;
 
 	//temp value
 	private Vector2 m_cScrollPos = new Vector2(0,0);
@@ -76,7 +76,7 @@ public class BTreeWin : EditorWindow
 		GUI.BeginGroup(new Rect(position.width-GUI_WIDTH,0,200,500f));
 		int x = 0;
 		int y = 0;
-		List<EditorBTree> lst = EditorBTreeMgr.sInstance.GetTrees();
+		List<BTree> lst = BTreeMgr.sInstance.GetTrees();
 		if(GUI.Button(new Rect(x,y,200,40),"Load"))
 		{
 			cur_tree = null;
@@ -86,18 +86,18 @@ public class BTreeWin : EditorWindow
 			select_create_node_id = -1;
 			select = null;
 			
-			EditorBTreeMgr.sInstance.Load();
+			BTreeMgr.sInstance.EditorLoad();
 		}
 		y+=40;
 		if(GUI.Button(new Rect(x,y,200,40),"Save Editor BTree"))
 		{
-			EditorBTreeMgr.sInstance.Save();
+			BTreeMgr.sInstance.EditorSave();
 			AssetDatabase.Refresh();
 		}
 		y+=40;
 		if(GUI.Button(new Rect(x,y,200,40),"Save BTree"))
 		{
-			EditorBTreeMgr.sInstance.SaveEx();
+//			BTreeMgr.sInstance.SaveEx();
 			AssetDatabase.Refresh();
 		}
 		y+=40;
@@ -110,10 +110,10 @@ public class BTreeWin : EditorWindow
 			if(this.m_strInputName != "")
 			{
 				cur_node = null;
-				EditorBTree tree = new EditorBTree();
+				BTree tree = new BTree();
 				tree.m_strName = this.m_strInputName;
-				EditorBTreeMgr.sInstance.Add(tree);
-				lst = EditorBTreeMgr.sInstance.GetTrees();
+				BTreeMgr.sInstance.Add(tree);
+				lst = BTreeMgr.sInstance.GetTrees();
 				cur_tree = tree;
 				for(int i = 0 ; i<lst.Count ; i++ )
 				{
@@ -131,8 +131,8 @@ public class BTreeWin : EditorWindow
 		if(GUI.Button(new Rect(x,y,200,40), "remove tree"))
 		{
 			cur_node = null;
-			EditorBTreeMgr.sInstance.Remove(cur_tree);
-			lst = EditorBTreeMgr.sInstance.GetTrees();
+			BTreeMgr.sInstance.Remove(cur_tree);
+			lst = BTreeMgr.sInstance.GetTrees();
 			cur_tree = null;
 			cur_tree_index = -1;
 			last_tree_index = -1;
@@ -168,7 +168,7 @@ public class BTreeWin : EditorWindow
 		{
 			if(select_create_node_id >= 0 )
 			{
-				EditorBNode node = EditorBTreeMgr.sInstance.GeneratorNode(select_create_node_id);
+				BNode node = BNodeFactory.sInstance.Create(select_create_node_id);
 				if(cur_tree != null )
 					cur_tree.m_cRoot = node;
 			}
@@ -205,3 +205,5 @@ public class BTreeWin : EditorWindow
 		}
 	}
 }
+
+#endif

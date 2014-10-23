@@ -73,9 +73,6 @@
  <Reference Include="RAINUpdater">
  <HintPath>/Users/luzexi/Desktop/Work/Project/Unity3DAIBehaviorTree/U3DAIBehaviorTree/Assets/RAIN/Editor/RAINUpdater.dll</HintPath>
  </Reference>
- <Reference Include="LitJson">
- <HintPath>/Users/luzexi/Desktop/Work/Project/Unity3DAIBehaviorTree/U3DAIBehaviorTree/Assets/Scripts/AIBehaviorTree/LitJson.dll</HintPath>
- </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.Graphs.dll</HintPath>
  </Reference>

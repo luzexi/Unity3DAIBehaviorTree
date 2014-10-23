@@ -23,7 +23,7 @@ public class NewBehaviourScript : MonoBehaviour {
 			if(ta == null)
 				Debug.Log("null.");
 			Debug.Log(ta.bytes.Length);
-			AIManager.sInstance.Load(ta.bytes);
+//			AIManager.sInstance.Load(ta.bytes);
 //			byte[] data = File.ReadAllBytes(Application.dataPath + "/Resources/tree2.bytes");
 //			Debug.Log(data.Length);
 //			AIManager.sInstance.Load(data);

@@ -14,6 +14,7 @@ namespace Game.AIBehaviorTree
     /// </summary>
     public class BNodeParallelSucceeOnAll : BNodeParallel
     {
+
 		/// <summary>
 		/// 执行
 		/// </summary>

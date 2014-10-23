@@ -15,15 +15,11 @@ namespace Game.AIBehaviorTree
     /// </summary>
     public class BNodeDecoratorNothing : BNodeDecorator
     {
-		public override string GetName ()
-		{
-			return "dec";
-		}
 
-		public override void DrawGUI(int x , int y)
-		{
-			GUI.Label(new Rect(x,y,100,30) ,"test BNodeDecoratorNothing");
-		}
+//		public override void DrawGUI(int x , int y)
+//		{
+//			GUI.Label(new Rect(x,y,100,30) ,"test BNodeDecoratorNothing");
+//		}
     }
 }
 

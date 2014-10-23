@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scripts\AIBehaviorTree\AIManager.cs" />
      <Compile Include="Assets\Scripts\AIBehaviorTree\ActionNode\BNodeActionNothing.cs" />
      <Compile Include="Assets\Scripts\AIBehaviorTree\BNodeFactory.cs" />
+     <Compile Include="Assets\Scripts\AIBehaviorTree\BTreeMgr.cs" />
      <Compile Include="Assets\Scripts\AIBehaviorTree\BTreeWin.cs" />
      <Compile Include="Assets\Scripts\AIBehaviorTree\Base\BNode.cs" />
      <Compile Include="Assets\Scripts\AIBehaviorTree\Base\BNodeAction.cs" />
@@ -65,10 +66,16 @@
      <Compile Include="Assets\Scripts\AIBehaviorTree\CompositeNode\Parallel\BNodeParallelSucceedOnAll.cs" />
      <Compile Include="Assets\Scripts\AIBehaviorTree\ConditionNode\BNodeConditionNothing.cs" />
      <Compile Include="Assets\Scripts\AIBehaviorTree\DecoratorNode\BNodeDecoratorNothing.cs" />
-     <Compile Include="Assets\Scripts\AIBehaviorTree\EditorBNode.cs" />
-     <Compile Include="Assets\Scripts\AIBehaviorTree\EditorBTree.cs" />
-     <Compile Include="Assets\Scripts\AIBehaviorTree\EditorBTreeMgr.cs" />
      <Compile Include="Assets\Scripts\AIBehaviorTree\Input\BInput.cs" />
+     <Compile Include="Assets\Scripts\AIBehaviorTree\LitJson\IJsonWrapper.cs" />
+     <Compile Include="Assets\Scripts\AIBehaviorTree\LitJson\JsonData.cs" />
+     <Compile Include="Assets\Scripts\AIBehaviorTree\LitJson\JsonException.cs" />
+     <Compile Include="Assets\Scripts\AIBehaviorTree\LitJson\JsonMapper.cs" />
+     <Compile Include="Assets\Scripts\AIBehaviorTree\LitJson\JsonMockWrapper.cs" />
+     <Compile Include="Assets\Scripts\AIBehaviorTree\LitJson\JsonReader.cs" />
+     <Compile Include="Assets\Scripts\AIBehaviorTree\LitJson\JsonWriter.cs" />
+     <Compile Include="Assets\Scripts\AIBehaviorTree\LitJson\Lexer.cs" />
+     <Compile Include="Assets\Scripts\AIBehaviorTree\LitJson\ParserToken.cs" />
      <Compile Include="Assets\Scripts\Test\NewBehaviourScript.cs" />
      <None Include="Assets\RAIN\Editor\Shaders\AspectSphereShader.shader" />
      <None Include="Assets\RAIN\Editor\Shaders\VisualSensorLineShader.shader" />
@@ -83,9 +90,6 @@
  </Reference>
  <Reference Include="RAINMetaform">
  <HintPath>/Users/luzexi/Desktop/Work/Project/Unity3DAIBehaviorTree/U3DAIBehaviorTree/Assets/RAIN/RAINMetaform.dll</HintPath>
- </Reference>
- <Reference Include="LitJson">
- <HintPath>/Users/luzexi/Desktop/Work/Project/Unity3DAIBehaviorTree/U3DAIBehaviorTree/Assets/Scripts/AIBehaviorTree/LitJson.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

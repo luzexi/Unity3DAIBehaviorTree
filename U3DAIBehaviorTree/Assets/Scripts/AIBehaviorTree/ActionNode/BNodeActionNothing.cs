@@ -19,9 +19,9 @@ namespace Game.AIBehaviorTree
     {
 		public int m_iTest;
 
-		public override string GetName ()
+		public BNodeActionNothing()
 		{
-			return "act";
+			this.m_strName = "BNodeActionNothing";
 		}
 
         /// <summary>
@@ -34,20 +34,20 @@ namespace Game.AIBehaviorTree
             return ActionResult.SUCCESS;
         }
 
-		public override void DrawGUI(int x , int y)
-		{
-			try
-			{
-				GUI.Label(new Rect(x,y,100,30) ,"test condition");
-				y+=30;
-				string tmpint = "" + this.m_iTest;
-				tmpint = GUI.TextField(new Rect(x,y,100,30) , tmpint);
-				this.m_iTest = int.Parse(tmpint);
-			}
-			catch( Exception ex )
-			{
-				Debug.Log(ex.StackTrace);
-			}
-		}
+//		public override void DrawGUI(int x , int y)
+//		{
+//			try
+//			{
+//				GUI.Label(new Rect(x,y,100,30) ,"test condition");
+//				y+=30;
+//				string tmpint = "" + this.m_iTest;
+//				tmpint = GUI.TextField(new Rect(x,y,100,30) , tmpint);
+//				this.m_iTest = int.Parse(tmpint);
+//			}
+//			catch( Exception ex )
+//			{
+//				Debug.Log(ex.StackTrace);
+//			}
+//		}
     }
 }

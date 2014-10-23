@@ -1,13 +1,32 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/AIBehaviorTree/EditorBTreeMgr.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/AIBehaviorTree/AIManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/AIBehaviorTree/EditorBNode.cs" Line="18" Column="1" />
-      <File FileName="Assets/Scripts/AIBehaviorTree/Base/BNode.cs" Line="14" Column="30" />
+      <File FileName="Assets/Scripts/AIBehaviorTree/BNodeFactory.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/AIBehaviorTree/Base/BNodeAction.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/AIBehaviorTree/BNode.cs" Line="46" Column="3" />
+      <File FileName="Assets/Scripts/AIBehaviorTree/Base/BNode.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/AIBehaviorTree/Base/BTree.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/AIBehaviorTree/EditorBTree.cs" Line="20" Column="37" />
-      <File FileName="Assets/Scripts/AIBehaviorTree/BTreeWin.cs" Line="5" Column="27" />
-      <File FileName="Assets/Scripts/AIBehaviorTree/EditorBTreeMgr.cs" Line="22" Column="29" />
+      <File FileName="Assets/Scripts/AIBehaviorTree/BTree.cs" Line="40" Column="4" />
+      <File FileName="Assets/Scripts/AIBehaviorTree/BTreeWin.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/AIBehaviorTree/BTreeMgr.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/AIBehaviorTree/AIManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/AIBehaviorTree/BNodeFactory.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/AIBehaviorTree/ActionNode/BNodeActionNothing.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/AIBehaviorTree/CompositeNode/BNodeParallel.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/AIBehaviorTree/CompositeNode/BNodeSelector.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/AIBehaviorTree/CompositeNode/BNodeSequence.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/AIBehaviorTree/ConditionNode/BNodeConditionNothing.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/AIBehaviorTree/DecoratorNode/BNodeDecoratorNothing.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/AIBehaviorTree/CompositeNode/Parallel/BNodeParallelFallOnAll.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/AIBehaviorTree/CompositeNode/Parallel/BNodeParallelHybird.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/AIBehaviorTree/CompositeNode/Parallel/BNodeParallelSucceedOnAll.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Test/NewBehaviourScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/AIBehaviorTree/Base/BNodeComposite.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/AIBehaviorTree/Base/BNodeCondition.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/AIBehaviorTree/Base/BNodeDecorator.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/AIBehaviorTree/Base/CustomAction.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/AIBehaviorTree/LitJson/JsonReader.cs" Line="457" Column="34" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

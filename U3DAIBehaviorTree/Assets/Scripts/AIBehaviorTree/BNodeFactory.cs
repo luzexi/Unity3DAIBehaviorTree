@@ -16,7 +16,7 @@ using Game.AIBehaviorTree;
 /// </summary>
 public class BNodeFactory
 {
-	private Dictionary<int,Type> m_mapGen = new Dictionary<int, Type>();
+	private List<Type> m_lstGen = new List<Type>();
 
 	private static BNodeFactory s_cInstance;
 	public static BNodeFactory sInstance
@@ -33,30 +33,30 @@ public class BNodeFactory
 
 	public BNodeFactory()
 	{
-		m_mapGen.Add(0,typeof(BNodeSequence));
-		m_mapGen.Add(1,typeof(BNodeSelector));
-		m_mapGen.Add(2,typeof(BNodeParallel));
+		m_lstGen.Add(typeof(BNodeSequence));
+		m_lstGen.Add(typeof(BNodeSelector));
+		m_lstGen.Add(typeof(BNodeParallel));
 	}
 
-	public BNode Create( int typeid )
+	public BNode Create( int index )
 	{
-		if( m_mapGen.ContainsKey(typeid) )
+		if( this.m_lstGen.Count > index )
 		{
-			Type t = this.m_mapGen[typeid];
+			Type t = this.m_lstGen[index];
 			BNode node = Activator.CreateInstance(t) as BNode;
-			node.SetTypeID(typeid);
 			return node;
 		}
-		Debug.LogError("The typeid is none : " + typeid);
+		Debug.LogError("The type index is none : " + index);
 		return null;
 	}
 
 	public string[] GetNodeLst()
 	{
-		string[] str = new string[this.m_mapGen.Count];
-		foreach( KeyValuePair<int,Type> item in this.m_mapGen )
+		string[] str = new string[this.m_lstGen.Count];
+		for( int i = 0 ; i<this.m_lstGen.Count ;i++ )
 		{
-			str[item.Key] = item.Value.Name;
+			Type item = this.m_lstGen[i];
+			str[i] = item.Name;
 		}
 		return str;
 	}

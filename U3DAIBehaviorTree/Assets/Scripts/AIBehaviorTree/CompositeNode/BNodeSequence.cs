@@ -14,9 +14,10 @@ namespace Game.AIBehaviorTree
     /// </summary>
     public class BNodeSequence : BNodeComposite
     {
-		public override string GetName ()
+		public BNodeSequence()
+			:base()
 		{
-			return "Sequence";
+			this.m_strName = "seq";
 		}
 
         /// <summary>

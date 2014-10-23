@@ -14,9 +14,10 @@ namespace Game.AIBehaviorTree
     /// </summary>
     public class BNodeParallel : BNodeComposite
     {
-		public override string GetName ()
+		public BNodeParallel()
+			:base()
 		{
-			return "Parallel";
+			this.m_strName = "par";
 		}
 
         /// <summary>

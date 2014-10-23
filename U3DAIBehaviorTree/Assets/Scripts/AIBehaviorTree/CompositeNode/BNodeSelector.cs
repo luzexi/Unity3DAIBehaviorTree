@@ -14,9 +14,10 @@ namespace Game.AIBehaviorTree
     /// </summary>
     public class BNodeSelector : BNodeComposite
     {
-		public override string GetName ()
+		public BNodeSelector()
+			:base()
 		{
-			return "Selector";
+			this.m_strName = "sel";
 		}
 
         /// <summary>
