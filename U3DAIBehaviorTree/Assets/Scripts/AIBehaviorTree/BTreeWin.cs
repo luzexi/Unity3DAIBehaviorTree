@@ -73,7 +73,7 @@ public class BTreeWin : EditorWindow
 		//////////////////// draw the tree /////////////////////
 		
 		//////////////////// draw editor gui /////////////////////
-		GUI.BeginGroup(new Rect(position.width-GUI_WIDTH,0,200,500f));
+		GUI.BeginGroup(new Rect(position.width-GUI_WIDTH,0,300,1000));
 		int x = 0;
 		int y = 0;
 		List<BTree> lst = BTreeMgr.sInstance.GetTrees();
@@ -184,12 +184,13 @@ public class BTreeWin : EditorWindow
 		y+=20;
 		if(cur_node != null )
 		{
-//			GUI.Label(new Rect(x,y,80,20),"Node Name:");
-//			cur_node.m_strName = GUI.TextField(new Rect(x+80,y,120,20) , cur_node.m_strName);
-//			y+=20;
-//			GUI.Label(new Rect(x,y,200,15) , "=======================");
-//			y+=15;
-//			cur_node.m_cNode.DrawGUI(x,y);
+			GUI.Label(new Rect(x,y,300,20),"Node Type: " + cur_node.GetType().FullName );
+			y+=20;
+			GUI.Label(new Rect(x,y,200,20),"Node Name: " + cur_node.GetName() );
+			y+=20;
+			GUI.Label(new Rect(x,y,200,15) , "=======================");
+			y+=15;
+			cur_node.RenderEditor(x,y);
 		}
 		//
 		GUI.EndGroup();

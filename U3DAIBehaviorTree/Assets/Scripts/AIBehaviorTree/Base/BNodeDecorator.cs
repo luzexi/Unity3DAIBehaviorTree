@@ -14,5 +14,10 @@ namespace Game.AIBehaviorTree
     /// </summary>
     public class BNodeDecorator : BNode
     {
+		public BNodeDecorator()
+			:base()
+		{
+			this.m_strName = "Decorator";
+		}
     }
 }

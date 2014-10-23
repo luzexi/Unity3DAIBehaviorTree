@@ -14,5 +14,10 @@ namespace Game.AIBehaviorTree
     /// </summary>
     public class BNodeComposite : BNode
     {
+		public BNodeComposite()
+			:base()
+		{
+			this.m_strName = "Composite";
+		}
     }
 }

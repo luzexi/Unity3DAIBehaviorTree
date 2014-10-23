@@ -14,5 +14,10 @@ namespace Game.AIBehaviorTree
     /// </summary>
     public class BNodeCondition : BNode
     {
+		public BNodeCondition()
+			:base()
+		{
+			this.m_strName = "Condition";
+		}
     }
 }

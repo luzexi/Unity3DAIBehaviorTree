@@ -19,6 +19,15 @@ namespace Game.AIBehaviorTree
     public class BNodeConditionNothing : BNodeCondition
     {
 		public int m_iTest;
+		public float m_fTest;
+		public bool m_bTest;
+		public string m_strTest="";
+
+		public BNodeConditionNothing()
+			:base()
+		{
+			this.m_strName = "condition";
+		}
 
         /// <summary>
         /// 执行

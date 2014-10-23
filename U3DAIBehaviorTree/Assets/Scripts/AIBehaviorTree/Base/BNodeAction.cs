@@ -14,6 +14,13 @@ namespace Game.AIBehaviorTree
     /// </summary>
     public class BNodeAction : BNode
     {
-		public CustomAction m_cAction;	//action
+		public BNodeAction()
+			:base()
+		{
+			this.m_strName = "Action";
+		}
+
+//		public CustomAction m_cAction;	//action
+
     }
 }

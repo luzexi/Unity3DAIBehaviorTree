@@ -7,6 +7,7 @@ using Game.AIBehaviorTree;
 using System.Xml;
 using LitJson;
 #if UNITY_EDITOR
+using System.Reflection;
 using UnityEditor;
 #endif
 
@@ -47,10 +48,30 @@ namespace Game.AIBehaviorTree
 		{
 			this.m_strType = json["type"].ToString();
 			this.m_strName = json["name"].ToString();
+
+			JsonData arg = json["arg"];
+			Type t = this.GetType();
+			FieldInfo[] fieldInfos = t.GetFields();
+			for( int i = 0 ; i < fieldInfos.Length ; i++ )
+			{
+				FieldInfo info = fieldInfos[i];
+				if(arg.Keys.Contains(info.Name))
+				{
+					string str = arg[info.Name].ToString();
+					object val = null;
+					if(info.FieldType == typeof(int)) val = int.Parse(str);
+					else if(info.FieldType == typeof(float)) val = float.Parse(str);
+					else if(info.FieldType == typeof(bool)) val = bool.Parse(str);
+					else if(info.FieldType == typeof(string)) val = str;
+					info.SetValue(this,val);
+				}
+			}
+
 			for( int i = 0 ; i<json["child"].Count ; i++ )
 			{
-				Type t = Type.GetType(this.m_strType);
-				BNode enode = Activator.CreateInstance(t) as BNode;
+				string typename = json["child"][i]["type"].ToString();
+				Type tt = Type.GetType(typename);
+				BNode enode = Activator.CreateInstance(tt) as BNode;
 				enode.ReadJson(json["child"][i]);
 				enode.m_cParent = this;
 				this.AddChild(enode);
@@ -62,6 +83,17 @@ namespace Game.AIBehaviorTree
 			JsonData json = new JsonData();
 			json["type"] = this.m_strType;
 			json["name"] = this.m_strName;
+
+			json["arg"] = new JsonData();
+			json["arg"].SetJsonType(JsonType.Object);
+			Type t = this.GetType();
+			FieldInfo[] fieldInfos = t.GetFields();
+			for( int i = 0 ; i < fieldInfos.Length ; i++ )
+			{
+				FieldInfo info = fieldInfos[i];
+				json["arg"][info.Name] = info.GetValue(this).ToString();
+			}
+
 			json["child"] = new JsonData();
 			json["child"].SetJsonType(JsonType.Array);
 			for(int i = 0 ; i<this.m_lstChildren.Count ; i++)
@@ -71,19 +103,6 @@ namespace Game.AIBehaviorTree
 			}
 			return json;
 		}
-
-//		public JsonData WriteJsonEx()
-//		{
-//			JsonData json = new JsonData();
-//			json["child"] = new JsonData();
-//			json["child"].SetJsonType(JsonType.Array);
-//			for(int i = 0 ; i<this.m_lstChildren.Count ; i++)
-//			{
-//				JsonData child = this.m_lstChildren[i].WriteJson();
-//				json["child"].Add(child);
-//			}
-//			return json;
-//		}
 
 		//enter
 		public virtual void OnEnter(BInput input)
@@ -132,6 +151,12 @@ namespace Game.AIBehaviorTree
 			int index = this.m_lstChildren.FindIndex((a)=>{return a == prenode;});
 			this.m_lstChildren.Insert(index,node);
 		}
+		//replace child
+		public void ReplaceChild( BNode prenode , BNode node )
+		{
+			int index = this.m_lstChildren.FindIndex((a)=>{return a == prenode;});
+			this.m_lstChildren[index] = node;
+		}
 		//is contain child
 		public bool ContainChild(BNode node)
 		{
@@ -139,12 +164,80 @@ namespace Game.AIBehaviorTree
 		}
 
 	#if UNITY_EDITOR
+		//render editor
+		public void RenderEditor(int x , int y)
+		{
+			try
+			{
+				Type t = this.GetType();
+				FieldInfo[] fieldInfos = t.GetFields();
+				for( int i = 0 ; i < fieldInfos.Length ; i++ )
+				{
+					FieldInfo info = fieldInfos[i];
+					//
+					object vl = null;
+					if(info.FieldType == typeof(int))
+					{
+						string fieldvalue = info.GetValue(this).ToString();
+						GUI.Label(new Rect(x,y+i*20,100,20),info.Name);
+						fieldvalue = GUI.TextField(new Rect(x+100,y+i*20,100,20) , fieldvalue);
+						vl = int.Parse(fieldvalue);
+					}
+					else if(info.FieldType == typeof(float))
+					{
+						string fieldvalue = info.GetValue(this).ToString();
+						GUI.Label(new Rect(x,y+i*20,100,20),info.Name);
+						fieldvalue = GUI.TextField(new Rect(x+100,y+i*20,100,20) , fieldvalue);
+						vl = float.Parse(fieldvalue);
+					}
+					else if(info.FieldType == typeof(bool))
+					{
+						bool fieldvalue = (bool)info.GetValue(this);
+						GUI.Label(new Rect(x,y+i*20,100,20),info.Name);
+						fieldvalue = GUI.Toggle(new Rect(x+100,y+i*20,100,20) , fieldvalue,"");
+						vl = fieldvalue;
+					}
+					else if(info.FieldType == typeof(string))
+					{
+						string fieldvalue = info.GetValue(this).ToString();
+						GUI.Label(new Rect(x,y+i*20,100,20),info.Name);
+						fieldvalue = GUI.TextField(new Rect(x+100,y+i*20,100,20) , fieldvalue);
+						vl = fieldvalue;
+					}
+
+					info.SetValue(this,vl);
+				}
+			}
+			catch( System.Exception ex )
+			{
+				//
+			}
+		}
+
 		//menu add decision node
 		private void menu_add_callback( object arg)
 		{
-			BNode node = BNodeFactory.sInstance.Create((int)arg);
+			Type t = arg as Type;
+			BNode node = Activator.CreateInstance(t) as BNode;
+
 			this.AddChild(node);
 			node.m_cParent = this;
+			BTreeWin.sInstance.Repaint();
+		}
+		//menu switch node
+		private void menu_switch_callback( object arg )
+		{
+			Type t = arg as Type;
+			BNode node = Activator.CreateInstance(t) as BNode;
+			node.m_cParent = this.m_cParent;
+			foreach( BNode item in this.m_lstChildren )
+			{
+				node.AddChild(item);
+			}
+			if(this.m_cParent != null)
+			{
+				this.m_cParent.ReplaceChild(this,node);
+			}
 			BTreeWin.sInstance.Repaint();
 		}
 
@@ -208,9 +301,16 @@ namespace Game.AIBehaviorTree
 				if(evt.type == EventType.ContextClick)
 				{
 					GenericMenu menu = new GenericMenu();
-					menu.AddItem(new GUIContent("create/decisions/sequence"), false , menu_add_callback , 0);
-					menu.AddItem(new GUIContent("create/decisions/selector"), false , menu_add_callback , 1);
-					menu.AddItem(new GUIContent("create/decisions/parallel"), false , menu_add_callback , 2);
+					menu.AddItem(new GUIContent("create/decisions/sequence"), false , menu_add_callback , typeof(BNodeSequence));
+					menu.AddItem(new GUIContent("create/decisions/selector"), false , menu_add_callback , typeof(BNodeSelector));
+					menu.AddItem(new GUIContent("create/decisions/parallel"), false , menu_add_callback , typeof(BNodeParallel));
+
+					menu.AddItem(new GUIContent("create/action/no"), false , menu_add_callback , typeof(BNodeConditionNothing));
+
+					menu.AddItem(new GUIContent("switch/decisions/sequence"), false , menu_switch_callback , typeof(BNodeSequence));
+					menu.AddItem(new GUIContent("switch/decisions/selector"), false , menu_switch_callback , typeof(BNodeSelector));
+					menu.AddItem(new GUIContent("switch/decisions/parallel"), false , menu_switch_callback , typeof(BNodeParallel));
+
 					menu.AddItem(new GUIContent("delete"), false , menu_delete_node ,"");
 					menu.ShowAsContext();
 				}
