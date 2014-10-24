@@ -2,7 +2,7 @@ Unity3DAIBehaviorTree
 =====================
 
 专为Unity3D打造的AI行为树,包括ai编辑器<br>
-更多内容请关注: http://www.luzexi.com<br>
+相关的博客文章地址为: http://www.luzexi.com/unity3d%E8%A1%8C%E4%B8%BA%E6%A0%91%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B%E5%AE%9E%E7%8E%B0/<br>
 
 <br>
 ![github](https://github.com/luzexi/Unity3DAIBehaviorTree/blob/master/img.png "编辑器")
@@ -87,3 +87,5 @@ Node为Behavior Node，而Composite Node和Decorator Node为Decider Node。)<br>
 not, counter, time, random, weight random, util…<br>
 <br>
 ——————————————————————— <br>
+
+更多Unity3D内容请访问: http://www.luzexi.com<br>
