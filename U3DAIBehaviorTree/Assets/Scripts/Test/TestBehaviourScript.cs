@@ -10,7 +10,7 @@ using Game.AIBehaviorTree;
 
 
 //test script
-public class NewBehaviourScript : MonoBehaviour {
+public class TestBehaviourScript : MonoBehaviour {
 
 	public TextAsset text;
 

@@ -86,7 +86,7 @@
      <Compile Include="Assets\Scripts\Test\ActionSkill.cs" />
      <Compile Include="Assets\Scripts\Test\ConditionHp.cs" />
      <Compile Include="Assets\Scripts\Test\ConditionMp.cs" />
-     <Compile Include="Assets\Scripts\Test\NewBehaviourScript.cs" />
+     <Compile Include="Assets\Scripts\Test\TestBehaviourScript.cs" />
      <Compile Include="Assets\Scripts\Test\TestInput.cs" />
      <None Include="Assets\RAIN\Editor\Shaders\AspectSphereShader.shader" />
      <None Include="Assets\RAIN\Editor\Shaders\VisualSensorLineShader.shader" />
