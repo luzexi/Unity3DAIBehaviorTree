@@ -47,7 +47,7 @@ namespace Game.AIBehaviorTree
 		public void ReadJson( JsonData json )
 		{
 			this.m_strType = json["type"].ToString();
-			this.m_strName = json["name"].ToString();
+//			this.m_strName = json["name"].ToString();
 
 			JsonData arg = json["arg"];
 			Type t = this.GetType();
