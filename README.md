@@ -1,6 +1,8 @@
 Unity3DAIBehaviorTree
 =====================
 
+This is AI BehaviorTree for Unity3d<br> 
+
 专为Unity3D打造的AI行为树,包括ai编辑器<br>
 相关的博客文章地址为: http://www.luzexi.com/unity3d%E8%A1%8C%E4%B8%BA%E6%A0%91%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B%E5%AE%9E%E7%8E%B0/<br>
 
